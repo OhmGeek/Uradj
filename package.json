@@ -1,0 +1,19 @@
+{
+  "name": "uradj",
+  "version": "0.1.0",
+  "description": "A remote DJ system for large groups to DJ as a crowd.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "dj"
+  ],
+  "author": "Ryan Collins",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.2",
+    "youtube-search": "^1.0.8"
+  }
+}
