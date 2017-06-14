@@ -39,3 +39,7 @@ jspm_packages
 
 # Cordova build
 ball/platforms
+
+# Jetbrains configs
+.idea/
+
