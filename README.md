@@ -30,4 +30,4 @@ Songs that are 10 minutes or longer are automatically rejected. This prevents so
 One can delete songs from the player, and see the current queue.
 
 ## Credits:
-Developed by Ryan Collins and Mike Croall, as part of an event app.
+Developed by [Ryan Collins](https://github.com/OhmGeek) and [Mike Croall](https://github.com/MikeCroall) as part of an event app.
