@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UraDJ Jukebox</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/card.css">
+    <link rel="stylesheet" href="/swal/sweetalert.css">
+    <script src="../js/modernizr.js"></script>
+    <script src="/jquery/jquery.min.js"></script>
+    <script src="/swal/sweetalert.min.js"></script>
+    <script src="../js/jukebox.js"></script>
+</head>
+
+<!--
+For free svg icons from flaticon.com, we need to attribute them
+http://www.flaticon.com/authors/freepik did birthday3 pack
+We are to attribute as follows (maybe in the footer?)
+
+Icon made by <a href="http://www.flaticon.com/authors/freepik">Freepik</a> from www.flaticon.com
+-->
+<body>
+<header>
+    <h1><a href="../"><span class="glyphicon glyphicon-chevron-left"></span></a>UraDJ Jukebox</h1>
+</header>
+<div class="container">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label for="music-search-box" class="control-label"><h2>Search:</h2></label><input type="text" class="form-control" id="music-search-box" placeholder="Enter song name or artist here">
+        </div>
+    </form>
+    <div class="card-container" id="song-container">
+
+    </div>
+</div>
+<div class="footer">
+    <!-- TODO Should we include the below line? -->
+    Summer Ball 2017 site built by Mike Croall and Ryan Collins<br>
+    <!-- We definitely include the below line, free icons! TODO or do we want material design icons? I do like those... #androidfanboy -->
+    Icons made by <a href="http://www.flaticon.com/authors/freepik">Freepik</a> from www.flaticon.com
+</div>
+</body>
+
+</html>
