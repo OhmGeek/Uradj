@@ -19,9 +19,9 @@
  app.use("/jquery", express.static(path.join(currentDirectory, "node_modules/jquery/dist")));
  app.use("/bootstrap", express.static(path.join(currentDirectory, "node_modules/bootstrap/dist")));
  app.use("/swal", express.static(path.join(currentDirectory, "node_modules/sweetalert/dist")));
- app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback")));
+ app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback"))); // this serves the player 
  app.use("/youtubeplayer", express.static(path.join(currentDirectory, "node_modules/jquery-tubeplayer-plugin/dist")));
-
+app.use("/", express.static(path.join(currentDirectory, "picker"))); //this serves the song picker
 
  app.get("/api", function(req, res) {
      res.send("API example");
