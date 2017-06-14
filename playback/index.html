@@ -1,35 +1,44 @@
 <html>
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Playback</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="playbackstyle.css">
-    <script src="/../jquery/jquery.min.js"></script>
-    <script src="/youtubeplayer/jquery.tubeplayer.js"></script>
-    <script src="playback.js"></script>
+    <link rel="stylesheet" href="css/playbackstyle.css">
 
-</head>
-<body>
-    <nav class="navbar bg-faded">
-        <a class="navbar-brand" href="#">Aidan's Jukebox Player</a>
-    </nav>
-    <div id="main-container" class="embed-responsive embed-responsive-16by9">
-
-    </div>
-    <div id="queue-container" class="container">
-        <h1>Queued Songs:</h1>
-        <ul id="queue-list" class="list-group">
-            <li class="list-group-item justify-content-between">
-                SONG NAME
-                <input type="button" class="btn btn-danger remove-song" value=" X ">
-            </li>
-        </ul>
-    </div>
-    <script src="/../jquery/jquery.min.js"></script>
+    <script src="/jquery/jquery.min.js"></script>
     <script src="/youtubeplayer/jquery.tubeplayer.js"></script>
-    <script src="playback.js"></script>
+    <script src="/js/playback.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
 
+<body>
+    <nav class="navbar bg-faded">
+        <a class="navbar-brand" href="#">Jukebox Player</a>
+    </nav>
+
+    <div class="row">
+        <div class="col-sm-9">
+            <div id="main-container" class="embed-responsive embed-responsive-16by9">
+
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <div id="queue-container" class="container-fluid">
+                <h1>Queued Songs</h1>
+                <ul id="queue-list" class="list-group">
+                    <li class="list-group-item justify-content-between">
+                        Song name here
+                        <button type="button" class="btn btn-danger remove-song">X</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

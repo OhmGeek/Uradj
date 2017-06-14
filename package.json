@@ -4,13 +4,13 @@
   "description": "A remote DJ system for large groups to DJ as a crowd.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 0",
     "start": "node index.js"
   },
   "keywords": [
     "dj"
   ],
-  "author": "Ryan Collins",
+  "author": "Ryan Collins and Mike Croall" ,
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
