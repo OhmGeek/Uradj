@@ -19,7 +19,7 @@
  app.use("/jquery", express.static(path.join(currentDirectory, "node_modules/jquery/dist")));
  app.use("/bootstrap", express.static(path.join(currentDirectory, "node_modules/bootstrap/dist")));
  app.use("/swal", express.static(path.join(currentDirectory, "node_modules/sweetalert/dist")));
- app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback"))); // this serves the player 
+ app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback"))); // this serves the player
  app.use("/youtubeplayer", express.static(path.join(currentDirectory, "node_modules/jquery-tubeplayer-plugin/dist")));
 app.use("/", express.static(path.join(currentDirectory, "picker"))); //this serves the song picker
 
@@ -50,8 +50,7 @@ app.use("/", express.static(path.join(currentDirectory, "picker"))); //this serv
      res.setHeader('Content-Type', 'application/json');
      var id = req.body.id;
      var title = req.body.songtitle;
-     // console.log("req.body.songtitle = ", title);
-     // console.log("req.body.id = ", id);
+
      if (id) {
          var index = -1;
          for (var i = 0; i < songs.length; i++) {
