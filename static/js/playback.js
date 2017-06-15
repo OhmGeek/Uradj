@@ -334,7 +334,7 @@ $(function() {
             // todo add a remove item event.
 
             li.append(btnRemove);
-
+            $('#queue-list').append(li);
         });
     }
 
