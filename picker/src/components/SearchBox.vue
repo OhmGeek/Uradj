@@ -15,7 +15,7 @@ export default {
     search(event) {
       event.preventDefault()
       // this.query is the value we want to search for
-      console.log(this.query)
+      this.$emit('search', this.query) //emit a searching event.
       // on finish, clear the search box
       this.query = "";
     }

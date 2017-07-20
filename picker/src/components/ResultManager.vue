@@ -1,6 +1,6 @@
 <template>
 <div class="result-manager">
-  <search-box></search-box>
+  <search-box @search="onSearch"></search-box>
   <div class="results">
     <search-result v-for="result in results" v-bind:result="result" v-bind:key="result.name"></search-result>
   </div>
@@ -19,6 +19,13 @@ export default {
   data () {
     return {
       results: [{name: "abc", description: "desc", "thumbnailURL": "asdf.jpg"}]
+    }
+  },
+  methods: {
+    onSearch(searchQuery) {
+      // make an ajax request to the server
+
+      // get results back
     }
   }
 }
