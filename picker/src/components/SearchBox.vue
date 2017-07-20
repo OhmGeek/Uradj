@@ -1,8 +1,8 @@
 <template>
 <div id="search-box">
   <form action="/" @submit='search'>
-    <input type="text" placeholder="Search for a song here..." v-model="query" />
-    <input type="submit" value="Search" />
+    <input class="text-input" type="text" placeholder="Search for a song here..." v-model="query" />
+    <input class="btn-submit" type="submit" value="Search" />
   </form>
 </div>
 </template>
@@ -30,5 +30,31 @@ export default {
 
 
 <style scoped>
+#search-box {
+  display: fixed;
+  background-color: beige;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -10px;
+}
+form {
+  text-align: center;
+}
+.text-input {
+  font-size: 16pt;
+
+}
+.btn-submit {
+  font-size: 16pt;
+  border: 0;
+  background-color: red;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 </style>

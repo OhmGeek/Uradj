@@ -55,5 +55,7 @@ export default {
 </script>
 
 <style scoped>
-
+.results {
+  background-color: grey;
+}
 </style>

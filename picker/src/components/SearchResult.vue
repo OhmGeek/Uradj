@@ -32,9 +32,12 @@ export default {
   width: 100%;
   display: block;
   clear: right;
-  background-color: red;
+  background-color: darkblue;
   margin-top: 10px;
   margin-bottom: 10px;
+  color: white;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .song-details {
