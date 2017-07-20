@@ -2,7 +2,7 @@
 <div class="result-manager">
   <search-box @search="onSearch"></search-box>
   <div class="results">
-    <search-result v-for="result in results" v-bind:result="result" v-bind:key="result.name"></search-result>
+    <search-result v-for="result in results" v-bind:result="result" v-bind:key="result.id"></search-result>
   </div>
 </div>
 </template>
@@ -36,7 +36,7 @@ export default {
               // create a result object
               var item = response.data[index];
               var itemToAdd = {
-                name: item.name,
+                name: item.title,
                 description: item.description,
                 thumbnailURL: item.thumbnails.high.url,
                 id: item.id
