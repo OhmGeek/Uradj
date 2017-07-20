@@ -11,6 +11,11 @@
 
 export default {
   name: 'search-box',
+  data() {
+    return {
+      query: ""
+    }
+  },
   methods: {
     search(event) {
       event.preventDefault()
