@@ -20,12 +20,14 @@ export default {
   },
   data () {
     return {
-      results: []
+      results: [{name: 'Name 1', description: 'Description 1', thumbnailURL: 'https://i.ytimg.com/vi/olit-B5Yldc/hqdefault.jpg'},
+    {name: 'Name 1', description: 'Description 1', thumbnailURL: 'https://i.ytimg.com/vi/olit-B5Yldc/hqdefault.jpg'}]
     }
   },
   methods: {
     onSearch(searchQuery) {
       // make an ajax request to the server
+      this.results = []; // clear previous results.
       axios.get(URADJ_URL + '/api/searchMusic', {
         params: {
           q: searchQuery
