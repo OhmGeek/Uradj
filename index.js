@@ -17,7 +17,7 @@ app.set("port", process.env.PORT || 3000);
 // Serve our own static files
 app.use(express.static(path.join(currentDirectory, "static")));
 // Default to using picker index.html
-app.use(express.static(path.join(currentDirectory, "picker")));
+app.use(express.static(path.join(currentDirectory, "picker/dist")));
 // Serve playback files at a specific path // TODO authenticate to avoid guests editing queue? Also auth all /api/ routes?
 app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback")));
 // Serve library statics at specific paths

@@ -12,7 +12,7 @@ import SearchBox from './SearchBox'
 import SearchResult from './SearchResult'
 import axios from 'axios'
 
-const URADJ_URL = 'http://summerball.herokuapp.com';
+const URADJ_URL = 'http://localhost:3000'
 export default {
   name: 'result-manager',
   components: {
@@ -31,23 +31,19 @@ export default {
           q: searchQuery
         }
       }).then( (response) => {
-        if(err) {
-          // throw an error.
-        } else {
           // go through each item
-          for (var item in response) {
-            if (object.hasOwnProperty(item)) {
+          for (var index in response.data) {
               // create a result object
+              var item = response.data[index];
               var itemToAdd = {
                 name: item.name,
                 description: item.description,
-                thumbnailURL: item.thumbnails.high.url
+                thumbnailURL: item.thumbnails.high.url,
+                id: item.id
               }
               // add it to the set of results.
               this.results.push(itemToAdd);
             }
-          }
-        }
       });
       // get results back
 
