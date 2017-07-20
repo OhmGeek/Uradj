@@ -4,13 +4,18 @@
       UraDJ Jukebox System
     </div>
     <div class="page-container">
+      <result-manager></result-manager>
     </div>
   </div>
 </template>
 
 <script>
+import ResultManager from './components/ResultManager'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    ResultManager
+  }
 }
 </script>
 
