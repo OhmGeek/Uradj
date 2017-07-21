@@ -20,8 +20,7 @@ export default {
   },
   data () {
     return {
-      results: [{name: 'Name 1', description: 'Description 1', thumbnailURL: 'https://i.ytimg.com/vi/olit-B5Yldc/hqdefault.jpg'},
-    {name: 'Name 1', description: 'Description 1', thumbnailURL: 'https://i.ytimg.com/vi/olit-B5Yldc/hqdefault.jpg'}]
+      results: []
     }
   },
   methods: {
