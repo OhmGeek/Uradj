@@ -34,7 +34,7 @@ app.get("/api/searchMusic", function(req, res) {
     // set the youtube search options, including API key
     const options = {
         maxResults: 10,
-        key: "AIzaSyAztA71WPwAgYmkBKXidUBK-fzLipNd8VI" // TODO remove from repo
+        key: process.env.YT_API_KEY // TODO remove from repo
     };
 
     // search youtube for the input
