@@ -40,14 +40,23 @@ export default {
   width: 100%;
   display: block;
   clear: right;
-  background-color: darkblue;
+  background-color: #0A88CF;
   margin-top: 10px;
   margin-bottom: 10px;
-  color: white;
+  color: black;
   padding-top: 20px;
   padding-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(1,1,1, 0.19);
+  border-radius: 15px 50px 50px 15px;
 }
-
+.search-result:hover {
+  background-color: #38A5CF;
+  -o-transition:.3s;
+ -ms-transition:.3s;
+ -moz-transition:.3s;
+ -webkit-transition:.3s;
+ transition:.3s;
+}
 .song-details {
   height: 100%;
   display: inline-block;
@@ -63,7 +72,7 @@ export default {
 .thumbnail {
   top: 0;
   height: 100px;
-
+  padding-left: 20px;
   vertical-align: middle;
 }
 
@@ -71,7 +80,7 @@ p {
   display: none;
 }
 h2 {
-  font-size: 1rem;
+  font-size: 2.5rem;
 
 }
 </style>

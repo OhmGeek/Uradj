@@ -52,9 +52,7 @@ export default {
     },
     onAddToQueue(info) {
       axios.post(URADJ_URL + '/api/addSong', info).then( (response) => {
-        console.log(response)
         if(response.data.err) {
-          console.log(response.err)
           this.$swal({
             title: "Oops...",
             text: "This song is already queued up!",
@@ -78,6 +76,6 @@ export default {
 
 <style scoped>
 .results {
-  padding-top: 45px;
+  padding-top: 10ch;
 }
 </style>

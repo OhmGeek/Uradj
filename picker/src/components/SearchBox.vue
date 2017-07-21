@@ -32,13 +32,13 @@ export default {
 <style scoped>
 #search-box {
   position: fixed;
-  background-color: beige;
+  background-color: #C06430;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: -10px;
-  width: 100%;
+  width: 102%;
   margin-right: -10px;
-  margin-top: -10px;
+  margin-top: -11px;
 }
 form {
   text-align: center;
@@ -50,8 +50,9 @@ form {
 .btn-submit {
   font-size: 16pt;
   border: 0;
-  background-color: red;
-  color: white;
+  background-color: #49E83E;
+  color: black;
+  font-weight: bolder;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 10px;
