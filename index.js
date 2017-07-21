@@ -51,7 +51,7 @@ app.get("/api/searchMusic", function (req, res) {
 app.post("/api/addSong", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var id = req.body.id;
-    var title = req.body.songtitle;
+    var title = req.body.title;
     // console.log("req.body.songtitle = ", title);
     // console.log("req.body.id = ", id);
 
