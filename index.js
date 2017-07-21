@@ -38,7 +38,7 @@ app.get("/api/searchMusic", function (req, res) {
     // set the youtube search options, including API key
     const options = {
         maxResults: 20,
-        key: process.ENV.YT_API_KEY
+        key: process.env.YT_API_KEY
     };
 
     // search youtube for the input
