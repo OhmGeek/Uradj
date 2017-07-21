@@ -25,6 +25,9 @@ html {
   top: 0;
   display: block;
 }
+body {
+  background-color: grey;
+}
 #app {
 
 }

@@ -31,11 +31,12 @@ export default {
 
 <style scoped>
 #search-box {
-  display: fixed;
+  position: fixed;
   background-color: beige;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: -10px;
+  width: 100%;
   margin-right: -10px;
   margin-top: -10px;
 }

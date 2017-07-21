@@ -1,5 +1,5 @@
 <template>
-<div class="search-result">
+<a class="search-result" v-on:click="addToQueue">
   <div class="thumbnail-block">
     <img class="thumbnail" v-bind:src="thumbnailURL" />
   </div>
@@ -9,7 +9,7 @@
       {{description}}
     </p>
   </div>
-</div>
+</a>
 </template>
 
 <script>
@@ -21,7 +21,15 @@ export default {
     return {
       'name': this.result.name,
       'description': this.result.description,
-      'thumbnailURL': this.result.thumbnailURL
+      'thumbnailURL': this.result.thumbnailURL,
+      'id': this.result.id
+    }
+  },
+  methods: {
+    addToQueue(event) {
+      event.preventDefault();
+      var infoToSend = {title: this.name, id: this.id}
+      this.$emit('addToQueue',infoToSend);
     }
   }
 }
