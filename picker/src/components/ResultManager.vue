@@ -11,7 +11,6 @@
 import SearchBox from './SearchBox'
 import SearchResult from './SearchResult'
 import axios from 'axios'
-import swal from 'sweetalert2'
 
 const URADJ_URL = window.location.origin
 export default {
@@ -53,8 +52,10 @@ export default {
     },
     onAddToQueue(info) {
       axios.post(URADJ_URL + '/api/addSong', info).then( (response) => {
-        if(response.err && resp.err === "Song already queued") {
-          swal({
+        console.log(response)
+        if(response.data.err) {
+          console.log(response.err)
+          this.$swal({
             title: "Oops...",
             text: "This song is already queued up!",
             type: "error",
@@ -62,7 +63,7 @@ export default {
           });
         }
         else {
-          swal({
+          this.$swal({
             title: "Song Added",
             text: "We've added your song to the queue!",
             type: "success",
