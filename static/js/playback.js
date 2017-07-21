@@ -8,280 +8,490 @@ $(function() {
 
     // todo load this from file rather than this monstrosity
     // this is the backup queue in case we have no more songs.
+
     var currentIndex = 0;
-    var BACKUP_PLAYLIST = [
-      "weeI1G46q0o",
-      "JGwWNGJdvx8",
-      "t5p5uCgY-tY",
-      "0zGcUoRlhmw",
-      "HHCC4ndeJyE",
-      "Io0fBr1XBUA",
-      "e3Qu5C0pcGA",
-      "SPc-oWXEhQQ",
-      "9Ke4480MicU",
-      "rhcc1KQlCS4",
-      "I4IXxzioDAk",
-      "ginBV6aeVlc",
-      "8j9zMok6two",
-      "87gWaABqGYs",
-      "-pAWXbMB3aM",
-      "euCqAq6BRa4",
-      "nBmNcLBaPUE",
-      "f6tU6BfnWEI",
-      "72UO0v5ESUo",
-      "6mTqqloMDjI",
-      "heeqMP_wwFw",
-      "5GL9JoH4Sws",
-      "gBAfejjUQoA",
-      "DBcVPsTmG5I",
-      "ubtbkgUmHHE",
-      "PMivT7MJ41M",
-      "9ORWF5RkdO0",
-      "I-VsisgVkHw",
-      "uy3KFOykGQc",
-      "nfs8NYg7yQM",
-      "-cy78b9uvBs",
-      "t3ZNK0Tewqs",
-      "FG9M0aEpJGE",
-      "yWEK4v9AVKQ",
-      "qN4ooNx77u0",
-      "A7xzXDStQnk",
-      "papuvlVeZg8",
-      "fRNkQH4DVg8",
-      "VbfpW0pbvaU",
-      "qXiuVQ-GgA4",
-      "fS7OffmLrf0",
-      "5hzB9qQENGA",
-      "AEB6ibtdPZc",
-      "DpMfP6qUSBo",
-      "EwzD8U4u76k",
-      "NGLxoKOvzu4",
-      "dMK_npDG12Q",
-      "ozEI3dEV95w",
-      "fKopy74weus",
-      "MH9ilfAZHOs",
-      "m9vO5pk4Ytg",
-      "w6DukrYK5wQ",
-      "QYfS6rgGV_E",
-      "Y-I45CgjX0o",
-      "AY9blLYMKnI",
-      "RhkgEgPqGc4",
-      "u3VTKvdAuIY",
-      "J7it_g_gAY4",
-      "oHmBf4ExtZk",
-      "zeH1fUsakTA",
-      "r3RXHOTMmLw",
-      "e2vBLd5Egnk",
-      "aatr_2MstrI",
-      "domR-DLjsrc",
-      "cHOrHGpL4u0",
-      "FM7MFYoylVs",
-      "BpIvh3gXAOg",
-      "BKpJqz2OlqA",
-      "7wtfhZwyrcc",
-      "WH9C6oLEtOg",
-      "rr2fPpwh6CI",
-      "UprcpdwuwCg",
-      "vdI0JLVhdYc",
-      "K4ZeDuKF4m8",
-      "kzQTc0-iBX8",
-      "34WHRrEwUws",
-      "DKJIgOSlDKk",
-      "by3yRdlQvzs",
-      "5-xVwxqjNyI",
-      "4is83n8xfLY",
-      "wZEmFDj8ml0",
-      "5dmQ3QWpy1Q",
-      "2JzttfbZWpQ",
-      "_uSHnm3t1og",
-      "phr1pOFK1V8",
-      "en2D_5TzXCA",
-      "K0ibBPhiaG0",
-      "Um7pMggPnug",
-      "XatXy6ZhKZw",
-      "kOkQ4T5WO9E",
-      "xO0Tt7NLC1Q",
-      "lY2yjAdbvdQ",
-      "Ey_hgKCCYU4",
-      "LKroRc-gZVA",
-      "hRVfCplkKq4",
-      "PcJ0r06ldYE",
-      "BqaoAQbkeXo",
-      "YnwsMEabmSo",
-      "ZNra8eK0K6k",
-      "WXmTEyq5nXc",
-      "CQGcfudKBBs",
-      "BV5nuF5lFU8",
-      "IT_c3fFW3VM",
-      "1VUa99-tJqs",
-      "SYGZVJo60Do",
-      "AXnqkVTFUqY",
-      "HHP5MKgK0o8",
-      "SC4xMk98Pdc",
-      "DM5tJ7q9rYk",
-      "34Na4j8AVgA",
-      "jsbeemdD2rQ",
-      "4ynV49NzGxw",
-      "wuCK-oiE3rM",
-      "RnBT9uUYb1w",
-      "S0qrinhNnOM",
-      "KkGVmN68ByU",
-      "uAVUl0cAKpo",
-      "rTCwL0Wsvyw",
-      "Y2V6yjjPbX0",
-      "SXiSVQZLje8",
-      "-rey3m8SWQI",
-      "DTWAavrVNQA",
-      "RJOqJ-RitOg",
-      "KEI4qSrkPAs",
-      "AEHj_OyKY1Y",
-      "ftG3NTqWzAk",
-      "S-sJp1FfG7Q",
-      "2AslJmdhSro",
-      "QpbQ4I3Eidg",
-      "fKas4dzDzcs",
-      "3LzWUAkpNrQ",
-      "31crA53Dgu0",
-      "TWJcg5owc0g",
-      "AQ4MQ_uhBSs",
-      "_DWI7iJaXhk",
-      "NPQiakiLGx4",
-      "1-xGerv5FOk",
-      "ACPd7HSZkc0",
-      "0GoGcVs6pbU",
-      "9bzMaiczpXU",
-      "IdneKLhsWOQ",
-      "3j8ecF8Wt4E",
-      "DVkkYlQNmbc",
-      "d2UZlwTDGbY",
-      "K44j-sb1SRY",
-      "7mWQ38SpEf8",
-      "TXRCGKFCH-0",
-      "OM33anTtEVE",
-      "ANS9sSJA9Yc",
-      "b8m9zhNAgKs",
-      "a2v_zGWawP0",
-      "UqyT8IEBkvY",
-      "1Vn1BXfsd4Q",
-      "b4Bj7Zb-YD4",
-      "v6IAJOOmDMg",
-      "GKSRyLdjsPA",
-      "JVpTp8IHdEg",
-      "NmCFY1oYDeM",
-      "xwjwCFZpdns",
-      "sY3rIlrTTh8",
-      "k9elZm_EH_4",
-      "bFDzhKdrN9M",
-      "IC-bSbXZBcU",
-      "R7xbhKIiw4Y",
-      "BXQ6QNLcJL8",
-      "VEou0QBeHlk",
-      "2RRY3OVqtwc",
-      "m1g4SpPGUBU",
-      "3AtDnEC4zak",
-      "MWASeaYuHZo",
-      "YqeW9_5kURI",
-      "nBtDsQ4fhXY",
-      "k1gsZ-OsGpI",
-      "XsFneCExrCQ",
-      "eC-F_VZ2T1c",
-      "iTno21crSsY",
-      "QGJuMBdaqIw",
-      "-59jGD4WrmE",
-      "1ekZEVeXwek",
-      "Xn599R0ZBwg",
-      "i_kF4zLNKio",
-      "lWA2pjMjpBs",
-      "7PCkvCPvDXk",
-      "Pw-0pbY9JeU",
-      "qDRORgoZxZU",
-      "xUVz4nRmxn4",
-      "WUcXQ--yGWQ",
-      "YUYjxf9rHCY",
-      "S2oxFIsENgM",
-      "UrUJyKsLQeU",
-      "5JxgDJvqGmM",
-      "foE1mO2yM04",
-      "tD4HCZe-tew",
-      "sy0279ZjVEo",
-      "rYEDA3JcQqw",
-      "C_3d6GntKbk",
-      "rClUOdS5Zyw",
-      "Jca0B2lbqpU",
-      "ru0K8uYEZWw",
-      "MoHnffhBwqs",
-      "9WbCfHutDSE",
-      "oydff0QlXSM",
-      "sO9cBXRcBvo",
-      "4KfnU1VI9SE",
-      "cMTAUr3Nm6I",
-      "E5ONTXHS2mM",
-      "0KSOMA3QBU0",
-      "IvPT2QuCIOA",
-      "9h30Bx4Klxg",
-      "GTyN-DB_v5M",
-      "XgJFqVvb2Ws",
-      "uO59tfQ2TbA",
-      "kSdcVt6eVfA",
-      "YBHQbu5rbdQ",
-      "OXWrjWDQh7Q",
-      "OORoOGY8D2M",
-      "5yXQJBU8A28",
-      "e7eZUGB9HKU",
-      "De30ET0dQpQ",
-      "z9porfO8C_Q",
-      "IdymkbLAuAk",
-      "DK_0jXPuIr0",
-      "liwCttfeJ7E",
-      "Ho32Oh6b4jc",
-      "2vjPBrBU-TM",
-      "iS1g8G_njx8",
-      "DXKHCgNFk1I",
-      "jGflUbPQfW8",
-      "QcIy9NiNbmo",
-      "OPf0YbXqDm0",
-      "zeT_nYtjgTQ",
-      "0HDdjwpPM3Y",
-      "b_KfnGBtVeA",
-      "NUsoVlDFqZg",
-      "t4H_Zoh7G5A",
-      "Bznxx12Ptl0",
-      "F57P9C4SAW4",
-      "nntGTK2Fhb0",
-      "1WpoKRnoPRU",
-      "w2CELiObPeQ"
-    ];
+    var BACKUP_PLAYLIST = shuffleArray([
+            {
+                "id": "uq-gYOrU8bA",
+                "title": "Paul Simon - You Can Call Me Al"
+            },
+            {
+                "id": "XfR9iY5y94s",
+                "title": "Men At Work - Down Under"
+            },
+            {
+                "id": "pIgZ7gMze7A",
+                "title": "Wham! - Wake Me Up Before You Go-Go"
+            },
+            {
+                "id": "4H5I6y1Qvz0",
+                "title": "Scissor Sisters - I Don't Feel Like Dancin'"
+            },
+            {
+                "id": "F90Cw4l-8NY",
+                "title": "Bastille - Pompeii"
+            },
+            {
+                "id": "DohRa9lsx0Q",
+                "title": "Stuck In The Middle With You - Stealers Wheel"
+            },
+            {
+                "id": "QtMWhJHZuts",
+                "title": "Bracia Figo Fagot - Disco Polo Dalej Gra (ver 2016)"
+            },
+            {
+                "id": "qDRORgoZxZU",
+                "title": "Meghan Trainor - Me Too"
+            },
+            {
+                "id": "uFmzhki2b70",
+                "title": "SANIC UNLEASHED"
+            },
+            {
+                "id": "eVrYbKBrI7o",
+                "title": "SKULL TRUMPET"
+            },
+            {
+                "id": "vtPk5IUbdH0",
+                "title": "Eddy Grant - Electric Avenue"
+            },
+            {
+                "id": "5JxgDJvqGmM",
+                "title": "Mike Perry - The Ocean ft. Shy Martin"
+            },
+            {
+                "id": "nYh-n7EOtMA",
+                "title": "Sia - Cheap Thrills (Lyric Video) ft. Sean Paul"
+            },
+            {
+                "id": "Gs069dndIYk",
+                "title": "Earth, Wind & Fire - September"
+            },
+            {
+                "id": "GKSRyLdjsPA",
+                "title": "Sia - The Greatest"
+            },
+            {
+                "id": "SxEINSBsbeo",
+                "title": "Rizzle Kicks - Mama Do The Hump Official Video"
+            },
+            {
+                "id": "FTQbiNvZqaY",
+                "title": "Toto - Africa"
+            },
+            {
+                "id": "uPudE8nDog0",
+                "title": "The Human League - Don't You Want Me"
+            },
+            {
+                "id": "xRb4xqFpOvY",
+                "title": "Steps - Scared Of The Dark (Official Video)"
+            },
+            {
+                "id": "UaYHRx9-v2M",
+                "title": "Diana Ross - Chain Reaction"
+            },
+            {
+                "id": "jn40gqhxoSY",
+                "title": "Cheat Codes - No Promises ft. Demi Lovato [Official Video]"
+            },
+            {
+                "id": "1Al-nuR1iAU",
+                "title": "Rag'n'Bone Man - Skin (Official Video)"
+            },
+            {
+                "id": "eAI1Onf2-Co",
+                "title": "Busted - What I Go To School For"
+            },
+            {
+                "id": "Tu7HoGZaspo",
+                "title": "Busted - Year 3000"
+            },
+            {
+                "id": "ALvep1RsGQ0",
+                "title": "TIEKS - Sunshine feat. Dan Harkna (Official Video)"
+            },
+            {
+                "id": "dQw4w9WgXcQ",
+                "title": "Rick Astley - Never Gonna Give You Up"
+            },
+            {
+                "id": "YR5ApYxkU-U",
+                "title": "Pink Floyd - Another Brick In The Wall (HQ)"
+            },
+            {
+                "id": "0mYBSayCsH0",
+                "title": "Smash Mouth - I'm A Believer"
+            },
+            {
+                "id": "L_jWHffIx5E",
+                "title": "Smash Mouth - All Star"
+            },
+            {
+                "id": "HEXWRTEbj1I",
+                "title": "Haddaway - What Is Love [Official]"
+            },
+            {
+                "id": "6hzrDeceEKc",
+                "title": "Oasis - Wonderwall - Official Video"
+            },
+            {
+                "id": "r8OipmKFDeM",
+                "title": "Oasis - Don't Look Back In Anger (Official Video)"
+            },
+            {
+                "id": "CU3mc0yvRNk",
+                "title": "The Dandy Warhols - Bohemian Like You"
+            },
+            {
+                "id": "fJ9rUzIMcZQ",
+                "title": "Queen - Bohemian Rhapsody (Official Video)"
+            },
+            {
+                "id": "e-ORhEE9VVg",
+                "title": "Taylor Swift - Blank Space"
+            },
+            {
+                "id": "nfWlot6h_JM",
+                "title": "Taylor Swift - Shake It Off"
+            },
+            {
+                "id": "djV11Xbc914",
+                "title": "a-ha - Take On Me (Official Video)"
+            },
+            {
+                "id": "qeMFqkcPYcg",
+                "title": "Eurythmics - Sweet Dreams (Are Made Of This) (Official Video)"
+            },
+            {
+                "id": "pL4uESRCnv8",
+                "title": "Aerosmith - Walk This Way (from You Gotta Move)"
+            },
+            {
+                "id": "X_I4wtNPv5w",
+                "title": "Hall & Oates ~ You Make My Dreams Come True"
+            },
+            {
+                "id": "iPUmE-tne5U",
+                "title": "Katrina & The Waves - Walking On Sunshine"
+            },
+            {
+                "id": "a_4G3HjGNbw",
+                "title": "Nyan Cat - Smooth Jazz Cover"
+            },
+            {
+                "id": "rjlSiASsUIs",
+                "title": "Marvin Gaye - Sexual Healing"
+            },
+            {
+                "id": "fF4XHz6RHeI",
+                "title": "Men Without Hats - Safety Dance [Music Video]"
+            },
+            {
+                "id": "eH3giaIzONA",
+                "title": "Whitney Houston - I Wanna Dance With Somebody"
+            },
+            {
+                "id": "ZHwVBirqD2s",
+                "title": "Elton John - I'm Still Standing"
+            },
+            {
+                "id": "qchPLaiKocI",
+                "title": "Kool & The Gang - Get Down On It"
+            },
+            {
+                "id": "hCuMWrfXG4E",
+                "title": "Billy Joel - Uptown Girl"
+            },
+            {
+                "id": "_6FBfAQ-NDE",
+                "title": "Depeche Mode - Just Can't Get Enough (Remastered Video)"
+            },
+            {
+                "id": "rQqwG_rQx7A",
+                "title": "The pointer sisters - I'm so excited"
+            },
+            {
+                "id": "zXt56MB-3vc",
+                "title": "UB40 - Red Red Wine"
+            },
+            {
+                "id": "MmyDosjjP5U",
+                "title": "Fleetwood Mac - Everywhere  (1987)"
+            },
+            {
+                "id": "r_GH6M7cUq4",
+                "title": "Kim Wilde - Kids in America (1981)"
+            },
+            {
+                "id": "SGyOaCXr8Lw",
+                "title": "The Rolling Stones - Start Me Up - Official Promo"
+            },
+            {
+                "id": "yK0P1Bk8Cx4",
+                "title": "Kenny Loggins - Danger Zone"
+            },
+            {
+                "id": "s36eQwgPNSE",
+                "title": "Funkytown- Lipps Inc (original)"
+            },
+            {
+                "id": "uv7y6PKEYms",
+                "title": "Luther Vandross-Never Too Much"
+            },
+            {
+                "id": "9f06QZCVUHg",
+                "title": "Bryan Adams - Summer of 69"
+            },
+            {
+                "id": "XZVpR3Pk-r8",
+                "title": "Soft Cell - Tainted Love"
+            },
+            {
+                "id": "W8r-tXRLazs",
+                "title": "The Buggles - Video Killed The Radio Star"
+            },
+            {
+                "id": "C-u5WLJ9Yk4",
+                "title": "Britney Spears - ...Baby One More Time"
+            },
+            {
+                "id": "1VQ_3sBZEm0",
+                "title": "Foo Fighters - Learn To Fly"
+            },
+            {
+                "id": "fC_q9KPczAg",
+                "title": "Barenaked Ladies - One Week (Video)"
+            },
+            {
+                "id": "8WEtxJ4-sh4",
+                "title": "TLC - Waterfalls"
+            },
+            {
+                "id": "NHozn0YXAeE",
+                "title": "Hanson - MMMBop"
+            },
+            {
+                "id": "mMfxI3r_LyA",
+                "title": "Modjo - Lady (Hear Me Tonight) (Official Video)"
+            },
+            {
+                "id": "IwBS6QGsH_4",
+                "title": "Will Smith - Miami"
+            },
+            {
+                "id": "eFTLKWw542g",
+                "title": "Billy Joel - We Didn't Start the Fire (Official Video)"
+            },
+            {
+                "id": "eqzWOmoger0",
+                "title": "Taylor Swift   I Knew You Were Trouble Goat Edition"
+            },
+            {
+                "id": "6M6samPEMpM",
+                "title": "Backstreet Boys - Everybody (Backstreet's Back) (Official Video)"
+            },
+            {
+                "id": "_IrQHeDcMi8",
+                "title": "LunchMoney Lewis - Bills (Official Video)"
+            },
+            {
+                "id": "4fndeDfaWCg",
+                "title": "Backstreet Boys - I Want It That Way"
+            },
+            {
+                "id": "KCkmIyC6v00",
+                "title": "Chumbawamba - Tubthumping"
+            },
+            {
+                "id": "bd2B6SjMh_w",
+                "title": "Gnarls Barkley - Crazy"
+            },
+            {
+                "id": "GP3Exc5tCtc",
+                "title": "Turn Me On (video) original little X video edited to new alb"
+            },
+            {
+                "id": "HyHNuVaZJ-k",
+                "title": "Gorillaz - Feel Good Inc. (Official Video)"
+            },
+            {
+                "id": "IKqV7DB8Iwg",
+                "title": "The Black Eyed Peas - Let's Get It Started"
+            },
+            {
+                "id": "M97vR2V4vTs",
+                "title": "Rudimental - Waiting All Night ft. Ella Eyre [Official Video]"
+            },
+            {
+                "id": "8ip8OsExLJs",
+                "title": "Rizzle Kicks - Down With The Trumpets"
+            },
+            {
+                "id": "bbqVg_23otg",
+                "title": "Amerie - 1 Thing"
+            },
+            {
+                "id": "4HLY1NTe04M",
+                "title": "Mark Ronson - Valerie ft. Amy Winehouse"
+            },
+            {
+                "id": "oABEGc8Dus0",
+                "title": "Rudimental - Feel The Love ft. John Newman [Official Video]"
+            },
+            {
+                "id": "Ic5vxw3eijY",
+                "title": "Estelle - American Boy [Feat. Kanye West] [Video]"
+            },
+            {
+                "id": "QGJuMBdaqIw",
+                "title": "Katy Perry - Firework (Official)"
+            },
+            {
+                "id": "_ovdm2yX4MA",
+                "title": "Avicii - Levels"
+            },
+            {
+                "id": "y6120QOlsfU",
+                "title": "Darude - Sandstorm"
+            },
+            {
+                "id": "rClUOdS5Zyw",
+                "title": "Jason Derulo - \"Want To Want Me\" (Official Video)"
+            },
+            {
+                "id": "nFZP8zQ5kzk",
+                "title": "Aloe Blacc - I Need A Dollar"
+            },
+            {
+                "id": "bKxodgpyGec",
+                "title": "Cee Lo Green - Forget You"
+            },
+            {
+                "id": "kv_cwzAIOHs",
+                "title": "Duke Dumont - Won't Look Back"
+            },
+            {
+                "id": "SXiSVQZLje8",
+                "title": "Ariana Grande - Side To Side ft. Nicki Minaj"
+            },
+            {
+                "id": "PWgvGjAhvIw",
+                "title": "OutKast - Hey Ya!"
+            },
+            {
+                "id": "koVHN6eO4Xg",
+                "title": "T.I. - Live Your Life [feat. Rihanna] (Video)"
+            },
+            {
+                "id": "mqWq_48LxWQ",
+                "title": "Mike Posner - Cooler Than Me"
+            },
+            {
+                "id": "3OnnDqH6Wj8",
+                "title": "Flo Rida - Good Feeling [Official Video]"
+            },
+            {
+                "id": "_X_1o3Qw4KM",
+                "title": "Fatboy Slim - Praise You"
+            },
+            {
+                "id": "w869Avr_fXI",
+                "title": "Caesars Palace - Jerk It Out (Official Video)"
+            },
+            {
+                "id": "0CGVgAYJyjk",
+                "title": "MIKA - Grace Kelly"
+            },
+            {
+                "id": "O0lf_fE3HwA",
+                "title": "Gwen Stefani - The Sweet Escape ft. Akon"
+            },
+            {
+                "id": "oEauWw9ZGrA",
+                "title": "Rihanna - Pon de Replay (Internet Version)"
+            },
+            {
+                "id": "III3G1egUcU",
+                "title": "Labrinth - Express Yourself"
+            },
+            {
+                "id": "ma9I9VBKPiw",
+                "title": "Arctic Monkeys - 'Fluorescent Adolescent' (2007)"
+            },
+            {
+                "id": "jGflUbPQfW8",
+                "title": "OMI - Cheerleader (Felix Jaehn Remix) [Official Video]"
+            },
+            {
+                "id": "y6y_4_b6RS8",
+                "title": "R. Kelly - Ignition (Remix) (Official Video)"
+            },
+            {
+                "id": "6JCLY0Rlx6Q",
+                "title": "WALK THE MOON - Shut Up and Dance"
+            },
+            {
+                "id": "vWaRiD5ym74",
+                "title": "DNCE - Cake By The Ocean"
+            },
+            {
+                "id": "Ct6BUPvE2sM",
+                "title": "PIKOTARO - PPAP (Pen Pineapple Apple Pen) (Long Version) [Official Video]"
+            },
+            {
+                "id": "iEPTlhBmwRg",
+                "title": "Maroon 5 - Moves Like Jagger ft. Christina Aguilera"
+            },
+            {
+                "id": "2zNSgSzhBfM",
+                "title": "MACKLEMORE & RYAN LEWIS - CAN'T HOLD US FEAT. RAY DALTON (OFFICIAL MUSIC VIDEO)"
+            }
+        ]);
+
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
 
     function loadNextSong() {
-      var url = BASE_URL + "/api/getNextSong";
-      //Make an AJAX request to get the next song
-      $.getJSON(url)
-          .then(function(resp) {
-              console.log("GET NEXT SONG");
-              if(resp.songID) {
-                  console.log(resp);
-                $("#main-container").tubeplayer("play", resp.songID);
-              } else {
-                  console.log("play backup");
-                // otherwise, we need to go to our list of backup songs
-                var songID = BACKUP_PLAYLIST[currentIndex];
-                // play the song
-                $("#main-container").tubeplayer("play", songID);
-                // increment the counter
-                currentIndex = (currentIndex + 1) % BACKUP_PLAYLIST.length;
-              }
-              // query API to get the entire queue
-              // /api/getQueuedIds/  GET request. resp.queue is the queue.
+        var url = BASE_URL + "/api/getNextSong";
+        //Make an AJAX request to get the next song
+        $.getJSON(url)
+            .then(function(resp) {
+                console.log("GET NEXT SONG");
+                if (resp.songID) {
+                    console.log("NExt song ID:");
+                    console.log(resp.songID);
+                    $("#main-container").tubeplayer("play", resp.songID);
+                    $("#nowplaying").text("Now playing: " + resp.songName);
+                } else {
+                    console.log("play backup");
+                    // otherwise, we need to go to our list of backup songs
+                    var currentSong = BACKUP_PLAYLIST[currentIndex];
+                    // play the song
+                    $("#main-container").tubeplayer("play", currentSong.id);
+                    $("#nowplaying").text("Now playing: " + currentSong.title); // TODO get song name from array
+                    // increment the counter
+                    currentIndex = (currentIndex + 1) % BACKUP_PLAYLIST.length;
+                }
+                // query API to get the entire queue
+                // /api/getQueuedIds/  GET request. resp.queue is the queue.
                 $.getJSON(location.origin + "/api/getQueuedIds")
                     .then(function(information) {
-                        console.log("GET JSON");
-                        console.log(information);
+                        // console.log("GET JSON");
+                        // console.log(information);
                         renderSongQueue(information.queue);
                     });
-              // get details of songs
+                // get details of songs
 
-              // render the queue itself on jquery
-          });
+                // render the queue itself on jquery
+            });
     }
 
     $("#main-container").tubeplayer({
@@ -289,52 +499,89 @@ $(function() {
         allowFullScreen: "false",
         controls: 1,
         annotations: false,
-        onPlayerLoaded: function(){
-            console.log("Song loaded");
+        onPlayerLoaded: function() {
+            // console.log("Song loaded");
+            $.getJSON(location.origin + "/api/getQueuedIds")
+                .then(function(information) {
+                    // console.log("GET JSON");
+                    // console.log(information);
+                    renderSongQueue(information.queue);
+                });
         },
         onPlayerEnded: function() {
-          console.log("Song ended now");
-          loadNextSong();
+            // console.log("Song ended now");
+            loadNextSong();
         },
-        onErrorNotFound: loadNextSong(),
-        onErrorNotEmbeddable: loadNextSong(),
-        onErrorInvalidParameter: loadNextSong(),
-        onMute: loadNextSong()
+        onErrorNotFound: function() {
+            console.log("Error: video not found");
+        },
+        onErrorNotEmbeddable: function() {
+            console.log("Error: video not embeddable");
+        },
+        onErrorInvalidParameter: function() {
+            console.log("Error: invalid param")
+        },
+        onMute: function() {
+            console.log("on mute called");
+        }
     });
 
 
+
+    function getQueue() {
+        $.getJSON(location.origin + "/api/getQueuedIds")
+            .then(function(information) {
+                // console.log("GET JSON");
+                // console.log(information);
+                renderSongQueue(information.queue);
+            });
+    }
+    setInterval(getQueue, 10000);
+
     function renderSongQueue(songQueue) {
 
-      // We go through the song queue, in order of ID.
+        // We go through the song queue, in order of ID.
         // for each:
-          // render the item
+        // render the item
 
-    // <li class="list-group-item justify-content-between">
-    //         SONG NAME
-    //     <input type="button" class="btn btn-danger remove-song" value=" X ">
-    //         </li>
+        // <li class="list-group-item justify-content-between">
+        //         SONG NAME
+        //     <input type="button" class="btn btn-danger remove-song" value=" X ">
+        //         </li>
 
         $('#queue-list').empty(); // empty the queue.
 
         songQueue.forEach(function(song) {
-            console.log("New Song");
-            console.log(song);
+            // console.log("New Song", song);
             // for each, render an item
             //create the separator object
-            var li = $('<li>');
-            li.addClass('list-group-item');
-            li.addClass('justify-content-between');
-            li.val(song.title);
+            var li = $("<li>");
+            li.addClass("list-group-item justify-content-between");
+            li.text(song.title);
 
             // Create the delete button
-            var btnRemove = $('<input>');
-            btnRemove.addClass('btn btn-danger remove-song');
-            btnRemove.val(" X ");
-            btnRemove.data('id', song.id); //store the song ID too.
-            // todo add a remove item event.
+            var btnRemove = $("<button>");
+            btnRemove.addClass("btn btn-danger remove-song");
+            btnRemove.text("X");
+            btnRemove.attr("type", "button");
+            btnRemove.data("id", song.id); //store the song ID too.
+            btnRemove.on("click", function() {
+                var id = $(this).data("id");
+
+                $.post(location.origin + '/api/removeSong', {
+                        "id": id
+                    }, null, 'json')
+                    .then(function(data) {
+                        if (data.err) {
+                            swal("Oops...", "We couldn't delete the song.", "error");
+                        } else {
+                            renderSongQueue(data.queue);
+                        }
+                    });
+            });
 
             li.append(btnRemove);
-            $('#queue-list').append(li);
+            $("#queue-list").append(li);
         });
     }
 

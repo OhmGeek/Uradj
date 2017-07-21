@@ -26,29 +26,34 @@ app.use("/swal", express.static(path.join(currentDirectory, "node_modules/sweeta
 app.use("/bootstrap", express.static(path.join(currentDirectory, "node_modules/bootstrap/dist")));
 app.use("/youtubeplayer", express.static(path.join(currentDirectory, "node_modules/jquery-tubeplayer-plugin/dist")));
 
-app.get("/api/searchMusic", function(req, res) {
+app.get("/api", function (req, res) {
+    res.send("API example");
+});
+
+app.get("/api/searchMusic", function (req, res) {
     res.type("json");
     // now search youtube for music as defined.
     var q = req.query.q;
 
     // set the youtube search options, including API key
     const options = {
-        maxResults: 10,
-        key: process.env.YT_API_KEY // TODO remove from repo
+        maxResults: 20,
+        key: process.ENV.YT_API_KEY
     };
 
     // search youtube for the input
-    ytSearch(q, options, function(err, results) {
-        if (err) return console.log(err);
-        res.send(results);
+    ytSearch(q, options, function (err, results) {
+        if (err) return console.err(err);
+        res.send(results.filter((x) => x.kind === "youtube#video"));
     });
-
 });
 
-app.post("/api/addSong", function(req, res) {
+app.post("/api/addSong", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var id = req.body.id;
     var title = req.body.songtitle;
+    // console.log("req.body.songtitle = ", title);
+    // console.log("req.body.id = ", id);
 
     if (id) {
         var index = -1;
@@ -58,17 +63,28 @@ app.post("/api/addSong", function(req, res) {
                 break;
             }
         }
+
+        // check duplicates
         if (index === -1) {
-            songs.push({
-                id: id,
-                title: title
-            }); // add the song to the id
-            console.log("ADDED SONG - Songs array now:", songs);
-            res.send({
-                "status": "Song with id " + id + " added to list"
-            }); // confirm the song is added
+
+            // filter by length
+            ytInfo(id, function (err, info) {
+                if (info.duration < 600) {
+                    songs.push({
+                        id: id,
+                        title: title
+                    }); // add the song to the id
+                    res.send({
+                        "status": "Song with id " + id + " added to list"
+                    }); // confirm the song is added
+                }
+                else {
+                    res.send({
+                        err: "Song exceeds 10 minute duration"
+                    });
+                }
+            });
         } else {
-            console.log("Duplicate song attempted but denied");
             res.send({
                 err: "Song already queued"
             })
@@ -80,7 +96,8 @@ app.post("/api/addSong", function(req, res) {
     }
 });
 
-app.post("/api/removeSong", function(req, res) {
+
+app.post("/api/removeSong", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     var id = req.body.id;
     if (id) {
@@ -93,10 +110,9 @@ app.post("/api/removeSong", function(req, res) {
         }
         if (index !== -1) {
             songs.splice(index, 1); // remove the song to
-            console.log("REMOVED SONG - Songs array now:", songs);
             res.send({
                 status: "Song removed from list",
-                queue: song
+                queue: songs
             }); // confirm the song is removed
         } else {
             res.send({
@@ -117,13 +133,13 @@ app.get("/api/getQueuedIds", function(req, res) {
     });
 });
 
-app.get("/api/getNextSong", function(req, res) {
+app.get("/api/getNextSong", function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     if (songs.length > 0) {
         var id = songs[0].id;
         var title = songs[0].title;
         songs.splice(0, 1);
-        console.log("Got song " + id + ", songs array now:", songs);
+        // console.log("Got song " + id + ", songs array now:", songs);
         res.send({
             "songID": id,
             "songName": title
