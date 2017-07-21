@@ -10,7 +10,7 @@
   "keywords": [
     "dj"
   ],
-  "author": "Ryan Collins and Mike Croall" ,
+  "author": "Ryan Collins and Mike Croall",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
