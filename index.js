@@ -43,7 +43,7 @@ app.get("/api/searchMusic", function (req, res) {
 
     // search youtube for the input
     ytSearch(q, options, function (err, results) {
-        if (err) return console.err(err);
+        if (err) return console.error(err);
         res.send(results.filter((x) => x.kind === "youtube#video"));
     });
 });
