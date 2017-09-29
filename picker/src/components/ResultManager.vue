@@ -56,7 +56,6 @@ export default {
             title: "Oops...",
             text: "This song is already queued up!",
             type: "error",
-            timer: 2000
           }).done();
         }
         else {
@@ -64,7 +63,6 @@ export default {
             title: "Song Added",
             text: "We've added your song to the queue!",
             type: "success",
-            timer: 2000
           }).done();
         }
       });
