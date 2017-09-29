@@ -57,7 +57,7 @@ export default {
             text: "This song is already queued up!",
             type: "error",
             timer: 2000
-          });
+          }).done();
         }
         else {
           this.$swal({
@@ -65,7 +65,7 @@ export default {
             text: "We've added your song to the queue!",
             type: "success",
             timer: 2000
-          })
+          }).done();
         }
       });
     }
