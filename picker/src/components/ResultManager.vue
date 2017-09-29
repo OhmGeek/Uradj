@@ -56,14 +56,14 @@ export default {
             title: "Oops...",
             text: "This song is already queued up!",
             type: "error",
-          }).done();
+          }).then();
         }
         else {
           this.$swal({
             title: "Song Added",
             text: "We've added your song to the queue!",
             type: "success",
-          }).done();
+          }).then();
         }
       });
     }
