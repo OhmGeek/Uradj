@@ -14,15 +14,15 @@
   "author": "Ryan Collins and Mike Croall",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.17.2",
+    "body-parser": "^1.18.2",
     "bootstrap": "^3.3.7",
-    "express": "^4.15.3",
+    "express": "^4.16.1",
     "jquery": "^3.2.1",
     "jquery-tubeplayer-plugin": "^2.1.0",
     "path": "^0.12.7",
     "sweetalert": "^1.1.3",
-    "youtube-info": "^1.1.1",
+    "youtube-info": "^1.1.2",
     "youtube-parser": "^1.1.0",
-    "youtube-search": "^1.0.9"
+    "youtube-search": "^1.0.10"
   }
 }
