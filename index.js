@@ -16,20 +16,7 @@ app.set("port", process.env.PORT || 3000);
 app.get('/api/searchMusic', (req, res) => {
   var q = req.query.q;
   SpotifyBackend.searchSongs(q).then(function(data) {
-    var tracks = data.body.tracks.items;
-    var ourFormatTracks = [];
-    tracks.forEach((item) => {
-      var track = {
-        "backend": SpotifyBackend.backendID(),
-        "info": {
-          "id": item.id,
-          "name": item.name,
-          "artist": "Test Artist",
-          "length": item.duration_ms / 1000
-        }
-      }
-      ourFormatTracks.push(track);
-    });
+    res.send(data);
   });
 });
 

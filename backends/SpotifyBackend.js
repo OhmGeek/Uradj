@@ -26,7 +26,30 @@ module.exports = {
     // our format
     return new Promise(function(resolve, reject) {
       spotify.searchTracks(searchTerm).then((data) => {
-        resolve(data);
+        var tracks = data.body.tracks.items;
+        var ourFormatTracks = [];
+        var getArtist = function(artistArray) {
+          let artistStr = "";
+          artistArray.forEach(function(artist) {
+            artistStr += artist.name;
+            artistStr += ", ";
+          });
+          artistStr = artistStr.slice(0, -2);
+          return artistStr;
+        }
+        tracks.forEach((item) => {
+          var track = {
+            "backend": "spotify",
+            "info": {
+              "id": item.id,
+              "name": item.name,
+              "artist": getArtist(item.artists),
+              "length": item.duration_ms / 1000,
+            }
+          }
+          ourFormatTracks.push(track);
+        });
+        resolve(ourFormatTracks);
       }, function(err) {
         reject(err);
       });
