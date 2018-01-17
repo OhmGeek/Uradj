@@ -21,7 +21,29 @@ app.get('/api/searchMusic', (req, res) => {
 });
 
 app.post('/api/addSong', (req, res) => {
+  var songToAdd = req.body.song;
+  songs.push(songToAdd);
 
+  // print queue for testing.
+  console.log("Current Queue:");
+  console.log(songs);
+
+  if(songToAdd in songs) {
+    res.send({
+      status: 200,
+      info: {
+        err: "Song already in the queue."
+      }
+    });
+  }
+  else {
+    res.send({
+      "status": 200,
+      "info": {
+        "message": "Song Added Successfully"
+      }
+    });
+  }
 });
 
 app.get("*", function(req, res) {

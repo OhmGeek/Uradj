@@ -19,7 +19,6 @@ getToken()
 setInterval(getToken, 55 * 60 * 60 * 1000); // every 55 mins, request token updated.
 
 module.exports = {
-  backendID: function() { return "spotify" },
   searchSongs: function(searchTerm) {
     // this takes a search term,
     // and returns a list of search results in
