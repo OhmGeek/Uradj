@@ -19,6 +19,10 @@ app.get('/api/searchMusic', (req, res) => {
   var q = req.query.q;
   SpotifyBackend.searchSongs(q).then(function(data) {
     res.send(data);
+  })
+  .catch((err) => {
+    res.send({ err: err });
+    console.log("error" + err);
   });
 });
 

@@ -1,7 +1,7 @@
 var SpotifyWebApi = require('spotify-web-api-node');
 var keys = require('./backend_keys.js');
 var spotify = new SpotifyWebApi(keys.spotify_keys);
-
+console.log(keys.spotify_keys);
 
 function getToken() {
   spotify.clientCredentialsGrant()
@@ -23,6 +23,7 @@ module.exports = {
     // this takes a search term,
     // and returns a list of search results in
     // our format
+    console.log(searchTerm);
     return new Promise(function(resolve, reject) {
       spotify.searchTracks(searchTerm).then((data) => {
         var tracks = data.body.tracks.items;

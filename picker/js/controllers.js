@@ -11,6 +11,10 @@ URADJ.controllers = {
       URADJ.services.songs.search(query)
         .then((results) => {
           console.log(results);
+        })
+        .catch((err) => {
+          console.log("ERROR");
+          console.log(err);
         });
       // finally, display items in the DOM.
 

@@ -27,7 +27,14 @@ URADJ.services = {
     search: function(searchTerm) {
       // TODO: search backend for a specific search term, returning results.
       return new Promise((resolve, reject) => {
-        reject("NOT IMPLEMENTED YET");
+        axios.get(BASE_URL + "/api/searchMusic", {
+          params: {
+            q: searchTerm
+          }
+        })
+          .then((resp) => {
+            resolve(resp);
+          });
       });
     },
     getDetails: function(songID) {
