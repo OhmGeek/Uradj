@@ -28,4 +28,4 @@ JSON format:
 }
 ```
 
-## Preventing
+When the user requests to add a song
