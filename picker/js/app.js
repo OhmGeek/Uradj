@@ -1,0 +1,3 @@
+window.URADJ = {}
+
+document.addEventListener

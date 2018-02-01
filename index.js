@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var SpotifyBackend = require('./backends/SpotifyBackend.js');
+var path = require('path');
 var app = express();
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -13,6 +14,7 @@ var currentDirectory = (process.env.PORT) ? process.cwd() : __dirname;
 app.set("port", process.env.PORT || 3000);
 
 
+// ------------- API calls ---------------
 app.get('/api/searchMusic', (req, res) => {
   var q = req.query.q;
   SpotifyBackend.searchSongs(q).then(function(data) {
@@ -45,6 +47,10 @@ app.post('/api/addSong', (req, res) => {
     });
   }
 });
+
+// ----------- STATIC CONTENT --------------
+app.use(express.static(path.join(currentDirectory, "picker")));
+
 
 app.get("*", function(req, res) {
     res.status(404).send("File not found");

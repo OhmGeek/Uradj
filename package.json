@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 0",
-    "start": "node index.js",
-    "postinstall": "cd picker && npm install && npm run build"
+    "start": "node index.js"
   },
   "keywords": [
     "dj"
@@ -16,6 +15,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
+    "path": "^0.12.7",
     "spotify-web-api-node": "^2.5.0"
   }
 }
