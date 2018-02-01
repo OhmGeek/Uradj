@@ -4,19 +4,60 @@
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
     <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
     <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/services.js"></script>
     <script src="/js/controllers.js"></script>
+
+    <style>
+        .search-input {
+              border: none;
+              border-radius: 20px;
+              width: 96%;
+              margin: 6px auto 6px auto;
+              height: 37px;
+
+              background-image: url("data:image/svg+xml;utf8,<svg width='41px' height='40px' viewBox='0 0 41 40' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'><title>Slice 1</title><g id='Page 1' stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g id='search' fill='#FFFFFF'><path d='M0.504,16.338 C0.504,25.085 7.635,32.165 16.444,32.165 C25.24,32.165 32.382,25.085 32.382,16.338 C32.382,7.591 25.24,0.5 16.444,0.5 C7.635,0.5 0.504,7.591 0.504,16.338 L0.504,16.338 Z M5.555,16.338 C5.555,10.359 10.423,5.521 16.445,5.521 C22.455,5.521 27.333,10.36 27.333,16.338 C27.333,22.317 22.455,27.156 16.445,27.156 C10.423,27.156 5.555,22.316 5.555,16.338 L5.555,16.338 Z M27.666,30.861 L34.521,38.67 C35.625,39.772 36.338,39.781 37.46,38.67 L39.661,36.489 C40.743,35.408 40.811,34.711 39.661,33.568 L31.765,26.793 L27.666,30.861 L27.666,30.861 Z M27.666,30.861' id='Shape'></path></g></g></svg>");
+              background-position: 8px center;
+              background-repeat: no-repeat;
+              -webkit-background-size: 17px;
+              background-size: 17px;
+              font-weight: 400;
+              display: block;
+        }
+
+        .search-input input {
+          color: black;
+        }
+
+        .search-input input::-webkit-input-placeholder{ color: #e52d27;}
+        .search-input input:-moz-placeholder{ color: #e52d27;}
+        .search-input input::-moz-placeholder{ color: #e52d27;}
+        .search-input input:-ms-input-placeholder{ color: #e52d27;}
+
+
+        .search-input input::-webkit-search-cancel-button {
+          -webkit-appearance: none;
+        }
+
+        .search-bar {
+          background: #eeeeee;
+          width: 100%;
+          position: fixed;
+          display: block;
+          z-index: 2;
+        }
+    </style>
   </head>
   <body>
     <ons-page>
-      <ons-toolbar>
-        <div class="center">Home</div>
-      </ons-toolbar>
+
       <ons-tabbar position="auto">
         <ons-tab page="ajax/home.html" label="Home" icon="ion-home, material:md-home" active>
         </ons-tab>
         <ons-tab page="ajax/search.html" label="Search" icon="md-search">
+        </ons-tab>
+        <ons-tab page="ajax/queue.html" label="View Queue" icon="md-collection-speaker">
         </ons-tab>
       </ons-tabbar>
     </ons-page>
