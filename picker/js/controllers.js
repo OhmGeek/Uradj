@@ -9,7 +9,7 @@ function getListItemForResult(result) {
   thumbnail.className = "left";
   let thumbnail_img = document.createElement('img');
   thumbnail_img.className = "list-item__thumbnail";
-  thumbnail_img.src = "http://placekitten.com/g/40/40"; //TODO: add thumbnail
+  thumbnail_img.src = result.info.thumbnail_img;
 
   // Add the Thumbnail to the list item
   thumbnail.appendChild(thumbnail_img);

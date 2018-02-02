@@ -38,6 +38,15 @@ module.exports = {
           return artistStr;
         }
         tracks.forEach((item) => {
+          console.log(item.album.images[2]);
+          thumb = "";
+          if(item.album.images[2]) {
+            thumb = item.album.images[2].url;
+          }
+          else {
+            thumb = "http://placekitten.com/g/40/40";
+
+          }
           var track = {
             "backend": "spotify",
             "info": {
@@ -45,6 +54,8 @@ module.exports = {
               "name": item.name,
               "artist": getArtist(item.artists),
               "length": item.duration_ms / 1000,
+              "thumbnail_img": thumb,
+
             }
           }
           ourFormatTracks.push(track);
