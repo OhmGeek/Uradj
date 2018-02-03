@@ -5,18 +5,25 @@ URADJ.services = {
     getFullQueueAsJSON: function() {
       // TODO: get queue from jukebox server
       return new Promise( (resolve, reject) => {
-        reject("Not implemented yet");
+          axios.get(BASE_URL + "/api/getQueue").then((resp) => {
+              if(resp.data) {
+                resolve(resp.data);
+              }
+              else {
+                  reject();
+              }
+          });
       });
     },
     add: function(songInfo) {
       // TODO: add item to queue.
       return new Promise( (resolve, reject) => {
         axios.post(BASE_URL + "/api/addSong", songInfo).then((resp) => {
-          if(resp.info.err) {
-            reject();
+          if(resp.data.info.err) {
+            reject(resp.info.err);
           }
           else {
-            resolve();
+            resolve(resp);
           }
         });
       });

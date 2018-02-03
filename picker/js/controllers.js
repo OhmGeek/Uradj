@@ -34,13 +34,14 @@ function getListItemForResult(result) {
   listItem.appendChild(thumbnail);
   listItem.appendChild(info);
 
-  listItem.setAttribute('data-json', JSON.stringify(result.info));
+  listItem.setAttribute('data-json', JSON.stringify(result));
 
   // now add the event trigger
   listItem.addEventListener('click', (event) => {
-    let target = event.target || event.srcElement;
+    let target = event.currentTarget;
+    console.log(target);
     let songData = JSON.parse(target.getAttribute('data-json'));
-
+    console.log(songData);
     URADJ.services.queue.add(songData).then(() => {
       console.log("Added");
     })
@@ -57,8 +58,19 @@ URADJ.controllers = {
     console.log("Home");
     // TODO display what's hot, and cards for queue info.
   },
-  viewQueue: function(page) {
-    console.log("View Queue");
+  queue: function(page) {
+    let queueList = document.querySelector('#queue-list');
+
+      URADJ.services.queue.getQueueAsJSON().then((data) => {
+        let songs = data.queue;
+
+          songs.forEach((song) => {
+            let listItem = getListItemForResult(song);
+            song.addEventListener('click', function() {}); // clear event listener TODO: refactor method to bring events outside of method.
+            queueList.appendChild(queueList);
+          });
+      });
+
   },
   search: function(page) {
 

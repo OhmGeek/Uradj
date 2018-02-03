@@ -27,7 +27,8 @@ app.get('/api/searchMusic', (req, res) => {
 });
 
 app.post('/api/addSong', (req, res) => {
-  var songToAdd = req.body.song;
+  var songToAdd = req.body;
+  console.log(songToAdd);
   songs.push(songToAdd);
 
   // print queue for testing.
@@ -51,6 +52,14 @@ app.post('/api/addSong', (req, res) => {
     });
   }
 });
+
+app.get('/api/getQueue', (req, res) => {
+    res.send({
+        "queue": songs
+    });
+});
+
+
 
 // ----------- STATIC CONTENT --------------
 app.use(express.static(path.join(currentDirectory, "picker")));
