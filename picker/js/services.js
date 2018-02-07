@@ -2,7 +2,7 @@ var BASE_URL = window.location.origin;
 
 URADJ.services = {
   queue: {
-    getFullQueueAsJSON: function() {
+    getJSON: function() {
       // TODO: get queue from jukebox server
       return new Promise( (resolve, reject) => {
           axios.get(BASE_URL + "/api/getQueue").then((resp) => {

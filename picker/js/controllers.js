@@ -61,13 +61,13 @@ URADJ.controllers = {
   queue: function(page) {
     let queueList = document.querySelector('#queue-list');
 
-      URADJ.services.queue.getQueueAsJSON().then((data) => {
+      URADJ.services.queue.getJSON().then((data) => {
         let songs = data.queue;
-
+        console.log(songs);
           songs.forEach((song) => {
             let listItem = getListItemForResult(song);
-            song.addEventListener('click', function() {}); // clear event listener TODO: refactor method to bring events outside of method.
-            queueList.appendChild(queueList);
+            listItem.addEventListener('click', null); // clear event listener TODO: refactor method to bring events outside of method.
+            queueList.appendChild(listItem);
           });
       });
 
