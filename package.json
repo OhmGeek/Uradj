@@ -17,6 +17,7 @@
     "express": "^4.16.2",
     "path": "^0.12.7",
     "socket.io": "^2.0.4",
-    "spotify-web-api-node": "^2.5.0"
+    "spotify-web-api-node": "^2.5.0",
+    "w3-css": "^4.0.4"
   }
 }

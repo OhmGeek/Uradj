@@ -71,12 +71,12 @@ playbackIO.on('connection', (socket) => {
     // Broadcasts to everyone INCLUDING sender.
     let nextSong = songs.shift();
     playbackIO.sockets.emit('start-song-playback', nextSong);
-  });  
+  });
 });
 
 // ----------- STATIC CONTENT --------------
 app.use(express.static(path.join(currentDirectory, "picker")));
-
+app.use('/jukeboxplayer', express.static(path.join(currentDirectory, 'playback')));
 
 app.get("*", function(req, res) {
     res.status(404).send("File not found");
