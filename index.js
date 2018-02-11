@@ -3,6 +3,9 @@ var bodyParser = require('body-parser');
 var SpotifyBackend = require('./backends/SpotifyBackend.js');
 var path = require('path');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({
@@ -59,7 +62,17 @@ app.get('/api/getQueue', (req, res) => {
     });
 });
 
-
+// Socket.io (for the playback namespace)
+var playbackIO = io.of('/playback');
+playbackIO.on('connection', (socket) => {
+  playbackIO.on('finished-playback', (data) => {
+    // When we finish playback, our next step is to then
+    // send an event to everyone saying 'play THIS song'.
+    // Broadcasts to everyone INCLUDING sender.
+    let nextSong = songs.shift();
+    playbackIO.sockets.emit('start-song-playback', nextSong);
+  });  
+});
 
 // ----------- STATIC CONTENT --------------
 app.use(express.static(path.join(currentDirectory, "picker")));
@@ -69,6 +82,6 @@ app.get("*", function(req, res) {
     res.status(404).send("File not found");
 });
 
-app.listen(app.get("port"), function() {
+server.listen(app.get("port"), function() {
     console.log("Server started on port " + app.get("port"));
 });
