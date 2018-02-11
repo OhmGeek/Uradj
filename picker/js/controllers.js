@@ -57,6 +57,19 @@ URADJ.controllers = {
   home: function(page) {
     console.log("Home");
     // TODO display what's hot, and cards for queue info.
+    URADJ.services.queue.getJSON().then((data) => {
+      let queueList = document.querySelector('#up-next-list');
+      let songs = data.queue;
+      console.log(songs);
+      let counter = 0;
+      while(counter < 3) {
+          let song = songs[counter];
+          let listItem = getListItemForResult(song);
+          listItem.addEventListener('click', null); // clear event listener TODO: refactor method to bring events outside of method.
+          queueList.appendChild(listItem);
+          counter += 1;
+      }
+    });
   },
   queue: function(page) {
     let queueList = document.querySelector('#queue-list');
