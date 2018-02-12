@@ -62,17 +62,6 @@ app.get('/api/getQueue', (req, res) => {
     });
 });
 
-// Socket.io (for the playback namespace)
-var playbackIO = io.of('/playback');
-playbackIO.on('connection', (socket) => {
-  playbackIO.on('finished-playback', (data) => {
-    // When we finish playback, our next step is to then
-    // send an event to everyone saying 'play THIS song'.
-    // Broadcasts to everyone INCLUDING sender.
-    let nextSong = songs.shift();
-    playbackIO.sockets.emit('start-song-playback', nextSong);
-  });
-});
 
 // ----------- STATIC CONTENT --------------
 app.use(express.static(path.join(currentDirectory, "picker")));
