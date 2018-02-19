@@ -30,13 +30,13 @@ io.on('connection', function(conn) {
     });
   })
 
-  conn.on('addSong', (data) => {
-    if(data in songs) {
+  conn.on('addSong', (songToAdd) => {
+    if(songToAdd in songs) {
       conn.emit('song-added', {err: "Song already in queue"});
     } else {
       songs.push(songToAdd);    
       conn.emit('song-added', {confirmed: "Song added!"});
-      io.emit('queue-updated', queue);
+      io.emit('queue-updated', songs);
     }
   });
 
