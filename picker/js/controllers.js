@@ -37,6 +37,11 @@ function getListItemForResult(result) {
   listItem.setAttribute('data-json', JSON.stringify(result));
 
   // now add the event trigger
+  // finally return list item.
+  return listItem;
+}
+
+function addListenerToSongItem(listItem) {
   listItem.addEventListener('click', (event) => {
     let target = event.currentTarget;
     console.log(target);
@@ -49,10 +54,7 @@ function getListItemForResult(result) {
       console.log("Error");
     });
   });
-  // finally return list item.
-  return listItem;
 }
-
 URADJ.controllers = {
   home: function(page) {
     console.log("Home");
@@ -65,7 +67,6 @@ URADJ.controllers = {
       while(counter < 3) {
           let song = songs[counter];
           let listItem = getListItemForResult(song);
-          listItem.removeEventListener('click', getListItemForResult); // clear event listener TODO: refactor method to bring events outside of method.
           queueList.appendChild(listItem);
           counter += 1;
       }
@@ -79,7 +80,6 @@ URADJ.controllers = {
         console.log(songs);
           songs.forEach((song) => {
             let listItem = getListItemForResult(song);
-            listItem.removeEventListener('click', getListItemForResult); // clear event listener TODO: refactor method to bring events outside of method.
             queueList.appendChild(listItem);
           });
       });
@@ -103,6 +103,7 @@ URADJ.controllers = {
           results.data.forEach((result) => {
             // Create a new list item. Add to this list item
             let listItem = getListItemForResult(result);
+            addListenerToSongItem(listItem);
             document.querySelector('#search-result-list').appendChild(listItem);
     //         <ons-list-item>
     //   <div class="left">
