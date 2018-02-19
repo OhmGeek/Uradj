@@ -65,7 +65,7 @@ URADJ.controllers = {
       while(counter < 3) {
           let song = songs[counter];
           let listItem = getListItemForResult(song);
-          listItem.addEventListener('click', null); // clear event listener TODO: refactor method to bring events outside of method.
+          listItem.removeEventListener('click', getListItemForResult); // clear event listener TODO: refactor method to bring events outside of method.
           queueList.appendChild(listItem);
           counter += 1;
       }
@@ -79,7 +79,7 @@ URADJ.controllers = {
         console.log(songs);
           songs.forEach((song) => {
             let listItem = getListItemForResult(song);
-            listItem.addEventListener('click', null); // clear event listener TODO: refactor method to bring events outside of method.
+            listItem.removeEventListener('click', getListItemForResult); // clear event listener TODO: refactor method to bring events outside of method.
             queueList.appendChild(listItem);
           });
       });
