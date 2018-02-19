@@ -116,7 +116,6 @@ URADJ.controllers = {
           });
         })
         .catch((err) => {
-          console.log("ERROR");
           console.log(err);
           document.querySelector("#search-result-list")
         });

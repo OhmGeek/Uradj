@@ -18,6 +18,31 @@ app.set("port", process.env.PORT || 3000);
 
 
 // ------------- API calls ---------------
+
+io.on('connection', function(conn) {
+  conn.on('search', (query) => {
+    var q = query.q;
+    SpotifyBackend.searchSongs(q).then(function(data) {
+      conn.emit('search-result', data);
+    })
+    .catch((err) => {
+      conn.emit('search-result', {err: err});
+    });
+  })
+
+  conn.on('addSong', (data) => {
+    if(data in songs) {
+      conn.emit('song-added', {err: "Song already in queue"});
+    } else {
+      songs.push(songToAdd);    
+      conn.emit('song-added', {confirmed: "Song added!"});
+      io.emit('queue-updated', queue);
+    }
+  });
+
+});
+
+
 app.get('/api/searchMusic', (req, res) => {
   var q = req.query.q;
   SpotifyBackend.searchSongs(q).then(function(data) {
