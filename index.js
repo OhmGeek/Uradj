@@ -36,7 +36,6 @@ io.on('connection', function(conn) {
   conn.on('search', (query) => {
     var q = query.q;
     YoutubeBackend.searchSongs(q).then(function(data) {
-      console.log(data)
       conn.emit('search-result', data);
     })
     .catch((err) => {
@@ -87,12 +86,8 @@ app.get('/api/searchMusic', (req, res) => {
 
 app.post('/api/addSong', (req, res) => {
   var songToAdd = req.body;
-  console.log(songToAdd);
   songs.push(songToAdd);
 
-  // print queue for testing.
-  console.log("Current Queue:");
-  console.log(songs);
 
   if(songToAdd in songs) {
     res.send({

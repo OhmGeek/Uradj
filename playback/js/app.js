@@ -19,5 +19,10 @@ $(function() {
         type: 'youtube'
       }]
     });
+    players[0].play();
+  });
+
+  players[0].on('ended', () => {
+    playbackIO.emit('get-next-song');
   });
 });
