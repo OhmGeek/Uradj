@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <title>UraDJ Playback</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.18/plyr.css">
+    <style>
+        body {
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        #spotify-player {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w3-container w3-red w3-center">
+        <h1>UraDJ Jukebox Administration</h1>
+    </div>
+
+    <div class="w3-container">
+        <h2>Turn Off Requests</h2>
+        <p>Getting towards the end of the night? Turning off requests will prevent people from choosing songs.</p>
+        <hr>
+        <label class="w3-label">Mute Requests?</label>
+        <input class="w3-check" type="checkbox" id="requests-off" checked="">
+
+    </div>
+    <!-- JavaScript -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>
