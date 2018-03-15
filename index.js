@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var SpotifyBackend = require('./backends/SpotifyBackend.js');
+// var SpotifyBackend = require('./backends/SpotifyBackend.js');
+var YoutubeBackend = require('./backends/YoutubeBackend.js');
 var path = require('path');
 var app = express();
 var server = require('http').Server(app);
@@ -22,7 +23,8 @@ app.set("port", process.env.PORT || 3000);
 io.on('connection', function(conn) {
   conn.on('search', (query) => {
     var q = query.q;
-    SpotifyBackend.searchSongs(q).then(function(data) {
+    YoutubeBackend.searchSongs(q).then(function(data) {
+      console.log(data)
       conn.emit('search-result', data);
     })
     .catch((err) => {
@@ -45,7 +47,7 @@ io.on('connection', function(conn) {
 
 app.get('/api/searchMusic', (req, res) => {
   var q = req.query.q;
-  SpotifyBackend.searchSongs(q).then(function(data) {
+  YoutubeBackend.searchSongs(q).then(function(data) {
     res.send(data);
   })
   .catch((err) => {

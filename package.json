@@ -18,6 +18,8 @@
     "path": "^0.12.7",
     "socket.io": "^2.0.4",
     "spotify-web-api-node": "^2.5.0",
-    "w3-css": "^4.0.4"
+    "w3-css": "^4.0.4",
+    "youtube-info": "^1.2.0",
+    "youtube-search": "^1.0.10"
   }
 }
