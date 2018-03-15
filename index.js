@@ -54,6 +54,23 @@ io.on('connection', function(conn) {
     });
   });
 
+  conn.on('get-next-song', () => {
+    // We get the next song, broadcast it to everywhere else.
+    let song = songs.shift();
+    let backup = {
+      backend: 'youtube',
+      info: {
+        id: 'IwzUs1IMdyQ',
+        title: 'vitas',
+      }
+    }
+    if(song) {
+      io.emit('play-next-song', song);
+    } else {
+      io.emit('play-next-song', backup)
+    }
+  });
+
 });
 
 

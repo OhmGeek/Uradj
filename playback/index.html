@@ -3,18 +3,28 @@
     <title>UraDJ Playback</title>
     <!-- CSS -->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.18/plyr.css">
+    <style>
+      body {
+        -moz-user-select: none;
+        user-select: none;
+      }
+    </style>
   </head>
   <body>
-    <div class="w3-container w3-red">
+    <div class="w3-container w3-red w3-center">
       <h1>UraDJ Jukebox Playback</h1>
     </div>
-    <div id="spotify-player" style="display: none;">
-
+    <div id="spotify-player">
+      <video poster="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-HD.jpg?v1" controls crossorigin>
+      </video>  
     </div>
 
     <!-- JavaScript -->
     <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.plyr.io/2.0.18/plyr.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/app.js"></script>
+    
   </body>
 </html>
