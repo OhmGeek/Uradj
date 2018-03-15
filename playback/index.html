@@ -1,45 +1,30 @@
 <html>
-<head>
-    <title>Playback</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/playbackstyle.css">
-    <script src="/../jquery/jquery.min.js"></script>
-    <script src="/youtubeplayer/jquery.tubeplayer.js"></script>
-    <script src="/js/playback.js"></script>
-
-</head>
-<body>
-    <nav class="navbar bg-faded">
-        <a class="navbar-brand" href="#">Aidan's Jukebox Player</a>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-9">
-                <div class="container song-container-container">
-                    <div id="main-container" class="embed-responsive embed-responsive-16by9">
-                    </div>
-                    <h2 id="nowplaying">Now playing: Test song - please ignore</h2>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div id="queue-container" class="container">
-                    <h1>Queued Songs:</h1>
-                    <ul id="queue-list" class="list-group">
-                        <!-- AUTO GENERATED HERE -->
-                    </ul>
-                </div>
-            </div>
-        </div>
+  <head>
+    <title>UraDJ Playback</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/2.0.18/plyr.css">
+    <style>
+      body {
+        -moz-user-select: none;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="w3-container w3-red w3-center">
+      <h1>UraDJ Jukebox Playback</h1>
     </div>
-    <div class="container-fluid" style="padding-top:20px;text-align:center;color:#f00">
-        <h1>To queue songs, jukebox.st-aidans.com</h1>
+    <div id="spotify-player">
+      <video poster="https://aidans-jcr-static.s3.amazonaws.com/images/12015083_10156082914080405_575932.2e16d0ba.fill-2000x700.jpg" controls crossorigin>
+      </video>  
     </div>
-    <script src="/../jquery/jquery.min.js"></script>
-    <script src="/youtubeplayer/jquery.tubeplayer.js"></script>
-    <script src="playback.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-</body>
-
+    <!-- JavaScript -->
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdn.plyr.io/2.0.18/plyr.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/app.js"></script>
+    
+  </body>
 </html>

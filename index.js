@@ -1,160 +1,127 @@
 var express = require('express');
-var ytSearch = require('youtube-search');
-var ytInfo = require('youtube-info');
 var bodyParser = require('body-parser');
+// var SpotifyBackend = require('./backends/SpotifyBackend.js');
+var YoutubeBackend = require('./backends/YoutubeBackend.js');
 var path = require('path');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
-})); // support encoded bodies
+})); // support encoded bodie
 
 var songs = [];
 var currentDirectory = (process.env.PORT) ? process.cwd() : __dirname;
-
 app.set("port", process.env.PORT || 3000);
 
-// Serve our own static files
-app.use(express.static(path.join(currentDirectory, "static")));
-// Default to using picker index.html
-app.use(express.static(path.join(currentDirectory, "picker/dist")));
-// Serve playback files at a specific path // TODO authenticate to avoid guests editing queue? Also auth all /api/ routes?
-app.use("/jukeboxplayer", express.static(path.join(currentDirectory, "playback")));
-// Serve library statics at specific paths
-app.use("/jquery", express.static(path.join(currentDirectory, "node_modules/jquery/dist")));
-app.use("/swal", express.static(path.join(currentDirectory, "node_modules/sweetalert/dist")));
-app.use("/bootstrap", express.static(path.join(currentDirectory, "node_modules/bootstrap/dist")));
-app.use("/youtubeplayer", express.static(path.join(currentDirectory, "node_modules/jquery-tubeplayer-plugin/dist")));
 
-app.get("/api", function (req, res) {
-    res.send("API example");
-});
+// ------------- API calls ---------------
+function songAlreadyQueued(song) {
+  let backend = song.backend;
+  let id=song.info.id;
 
-app.get("/api/searchMusic", function (req, res) {
-    res.type("json");
-    // now search youtube for music as defined.
-    var q = req.query.q;
-
-    // set the youtube search options, including API key
-    const options = {
-        maxResults: 20,
-        key: process.env.YT_API_KEY
-    };
-
-    // search youtube for the input
-    ytSearch(q, options, function (err, results) {
-        if (err) return console.error(err);
-        res.send(results.filter((x) => x.kind === "youtube#video"));
+  return new Promise((resolve, reject) => {
+    songs.forEach((s) => {
+      if(s.info.id == id && s.backend==backend) {
+        reject("Song Already In Queue");
+      }
     });
-});
+    resolve(song);
+  })
+}
+io.on('connection', function(conn) {
+  conn.on('search', (query) => {
+    var q = query.q;
+    YoutubeBackend.searchSongs(q).then(function(data) {
+      conn.emit('search-result', data);
+    })
+    .catch((err) => {
+      conn.emit('search-result', {err: err});
+    });
+  })
 
-app.post("/api/addSong", function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    var id = req.body.id;
-    var title = req.body.title;
-    // console.log("req.body.songtitle = ", title);
-    // console.log("req.body.id = ", id);
+  conn.on('addSong', (songToAdd) => {
+    songAlreadyQueued(songToAdd).then((song) => {
+      songs.push(songToAdd);    
+      conn.emit('song-added', {confirmed: "Song added!"});
+      io.emit('queue-updated', songs);
+    }).catch((err) => {
+      conn.emit('song-added', {err: "Song already in queue"});
+    });
+  });
 
-    if (id) {
-        var index = -1;
-        for (var i = 0; i < songs.length; i++) {
-            if (songs[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-
-        // check duplicates
-        if (index === -1) {
-
-            // filter by length
-            ytInfo(id, function (err, info) {
-                if (info.duration < 600) {
-                    songs.push({
-                        id: id,
-                        title: title
-                    }); // add the song to the id
-                    res.send({
-                        "status": "Song with id " + id + " added to list"
-                    }); // confirm the song is added
-                }
-                else {
-                    res.send({
-                        err: "Song exceeds 10 minute duration"
-                    });
-                }
-            });
-        } else {
-            res.send({
-                err: "Song already queued"
-            })
-        }
-    } else {
-        res.send({
-            err: "No id given"
-        });
+  conn.on('get-next-song', () => {
+    // We get the next song, broadcast it to everywhere else.
+    let song = songs.shift();
+    let backup = {
+      backend: 'youtube',
+      info: {
+        id: 'IwzUs1IMdyQ',
+        title: 'vitas',
+      }
     }
-});
-
-
-app.post("/api/removeSong", function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    var id = req.body.id;
-    if (id) {
-        var index = -1;
-        for (var i = 0; i < songs.length; i++) {
-            if (songs[i].id === id) {
-                index = i;
-                break;
-            }
-        }
-        if (index !== -1) {
-            songs.splice(index, 1); // remove the song to
-            res.send({
-                status: "Song removed from list",
-                queue: songs
-            }); // confirm the song is removed
-        } else {
-            res.send({
-                err: "Song not found in queue"
-            })
-        }
+    if(song) {
+      io.emit('play-next-song', song);
     } else {
-        res.send({
-            err: "No id given"
-        });
+      io.emit('play-next-song', backup)
     }
+  });
+
 });
 
-app.get("/api/getQueuedIds", function(req, res) {
-    res.setHeader('Content-Type', 'application/json');
+
+app.get('/api/searchMusic', (req, res) => {
+  var q = req.query.q;
+  YoutubeBackend.searchSongs(q).then(function(data) {
+    res.send(data);
+  })
+  .catch((err) => {
+    res.send({ err: err });
+    console.log("error" + err);
+  });
+});
+
+app.post('/api/addSong', (req, res) => {
+  var songToAdd = req.body;
+  songs.push(songToAdd);
+
+
+  if(songToAdd in songs) {
     res.send({
-        queue: songs
+      status: 200,
+      info: {
+        err: "Song already in the queue."
+      }
+    });
+  }
+  else {
+    res.send({
+      "status": 200,
+      "info": {
+        "message": "Song Added Successfully"
+      }
+    });
+  }
+});
+
+app.get('/api/getQueue', (req, res) => {
+    res.send({
+        "queue": songs
     });
 });
 
-app.get("/api/getNextSong", function (req, res) {
-    res.setHeader('Content-Type', 'application/json');
-    if (songs.length > 0) {
-        var id = songs[0].id;
-        var title = songs[0].title;
-        songs.splice(0, 1);
-        // console.log("Got song " + id + ", songs array now:", songs);
-        res.send({
-            "songID": id,
-            "songName": title
-        });
-    } else {
-        res.send({
-            err: "Empty queue - no next song"
-        });
-    }
-});
+
+// ----------- STATIC CONTENT --------------
+app.use(express.static(path.join(currentDirectory, "picker")));
+app.use('/jukeboxplayer', express.static(path.join(currentDirectory, 'playback')));
 
 app.get("*", function(req, res) {
     res.status(404).send("File not found");
 });
 
-app.listen(app.get("port"), function() {
+server.listen(app.get("port"), function() {
     console.log("Server started on port " + app.get("port"));
 });
