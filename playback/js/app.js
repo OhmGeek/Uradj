@@ -17,7 +17,8 @@ $(function() {
       sources: [{
         src: song.info.id,
         type: 'youtube'
-      }]
+      }],
+      autoplay: true,
     });
     players[0].play();
   });
