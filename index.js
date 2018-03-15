@@ -19,7 +19,19 @@ app.set("port", process.env.PORT || 3000);
 
 
 // ------------- API calls ---------------
+function songAlreadyQueued(song) {
+  let backend = song.backend;
+  let id=song.info.id;
 
+  return new Promise((resolve, reject) => {
+    songs.forEach((s) => {
+      if(s.info.id == id && s.backend==backend) {
+        reject("Song Already In Queue");
+      }
+    });
+    resolve(song);
+  })
+}
 io.on('connection', function(conn) {
   conn.on('search', (query) => {
     var q = query.q;
@@ -33,13 +45,13 @@ io.on('connection', function(conn) {
   })
 
   conn.on('addSong', (songToAdd) => {
-    if(songToAdd in songs) {
-      conn.emit('song-added', {err: "Song already in queue"});
-    } else {
+    songAlreadyQueued(songToAdd).then((song) => {
       songs.push(songToAdd);    
       conn.emit('song-added', {confirmed: "Song added!"});
       io.emit('queue-updated', songs);
-    }
+    }).catch((err) => {
+      conn.emit('song-added', {err: "Song already in queue"});
+    });
   });
 
 });
