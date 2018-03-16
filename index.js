@@ -60,7 +60,7 @@ io.on('connection', function(conn) {
             backend: 'youtube',
             info: {
                 id: 'IwzUs1IMdyQ',
-                title: 'vitas',
+                name: 'Vitas - 7th Element',
             }
         }
         if (song) {

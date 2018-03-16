@@ -1,9 +1,9 @@
 var socket = io();
 // Display Search Results
 socket.on('search-result', (results) => {
-    console.log("Search Results Received");
     let resultsList = document.querySelector('#search-result-list');
     resultsList.innerHTML = ""; // clear
+    console.log(results);
     results.forEach((result) => {
         // Create a new list item. Add to this list item
         let listItem = getListItemForResult(result);
@@ -40,7 +40,17 @@ socket.on('queue-updated', (data) => {
 
 // Confirm song added/error
 socket.on('song-added', (data) => {
-
+    if(data.confirmed) {
+        swal({
+            title: "Song added",
+            type: "success"
+        });
+    } else {
+        swal({
+            title: "An error occurred",
+            type: "error"
+        });
+    }
 });
 
 function search(elem) {
