@@ -53,6 +53,10 @@ io.on('connection', function(conn) {
         });
     });
 
+    conn.on('get-queue', () => {
+        // send the queue to those who need it.
+        conn.emit('queue-updated', songs);
+    });
     conn.on('get-next-song', () => {
         // We get the next song, broadcast it to everywhere else.
         let song = songs.shift();
