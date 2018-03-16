@@ -6,7 +6,6 @@ module.exports = {
         // and returns a list of search results in
         // our format
         // set the youtube search options, including API key
-        console.log("YT SEARCH");
 
 
         return new Promise(function(resolve, reject) {
@@ -19,14 +18,11 @@ module.exports = {
 
             // search youtube for the input
             ytSearch(searchTerm, options, function(err, results) {
-                console.log(results);
-                console.log(err)
                 if (err) return reject(err);
 
                 // Now go through and filter data into format.
                 let formattedResults = []
                 results.forEach(result => {
-                    console.log(result);
                     var track = {
                         "backend": "youtube",
                         "info": {
