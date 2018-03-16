@@ -74,6 +74,14 @@ io.on('connection', function(conn) {
         }
     });
 
+    conn.on('delete-song-from-queue', (song) => {
+        console.log(song);
+        let indexToDelete = songs.indexOf(song);
+        songs.splice(indexToDelete, 1);
+        console.log("Queue updated");
+        conn.emit('queue-updated', songs);
+    });
+
 });
 
 

@@ -13,10 +13,13 @@ socket.on('search-result', (results) => {
 
 });
 
+window.addEventListener('onload', function() {
+    socket.emit('get-queue');
+})
 // Update Queue
 socket.on('queue-updated', (data) => {
         // First, update the UP NEXT LIST on home
-    let queueList = document.querySelector('#up-next-list');
+    let queueList = document.querySelector('#queue-list');
     queueList.innerHTML = "";
     let songs = data;
     console.log(songs);

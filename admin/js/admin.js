@@ -12,7 +12,7 @@ $(function() {
         //     </li>
         let songObject = document.createElement('li');
         songObject.className = 'w3-display-container';
-
+        songObject.dataset.song = song;
         let songText = document.createElement('span');
         songText.innerText = song.info.name;
         songObject.appendChild(songText);
@@ -21,6 +21,10 @@ $(function() {
         deleteButton.className = "w3-button w3-display-right";
         deleteButton.innerHTML = "&times;";
         songObject.appendChild(deleteButton);
+        songObject.addEventListener('click', function() {
+            let song = this.dataset.song;
+            adminIO.emit('delete-song-from-queue', song);
+        })
         return songObject;
     }
 
