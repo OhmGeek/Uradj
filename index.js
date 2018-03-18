@@ -494,9 +494,10 @@ io.on('connection', function(conn) {
         ];
         
         Promise.all(checkPipeline).then((songToAdd) => {
+            console.log(songToAdd)
             console.log("REACHES THEN STATEMENT");
             // add song.
-            songs.push(songToAdd);
+            songs.push(songToAdd[0]);
             conn.emit('song-added', { confirmed: "Song added!" });
             io.emit('queue-updated', songs);
         }).catch((err) => {
