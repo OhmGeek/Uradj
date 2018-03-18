@@ -464,10 +464,10 @@ var default_queue = [
 
 // ------------- API calls ---------------
 function songAlreadyQueued(song) {
+  
+  return new Promise((resolve, reject) => {
     let backend = song.backend;
     let id = song.info.id;
-
-    return new Promise((resolve, reject) => {
         songs.forEach((s) => {
             if (s.info.id == id && s.backend == backend) {
                 reject("Song Already In Queue");
@@ -488,13 +488,27 @@ io.on('connection', function(conn) {
     })
 
     conn.on('addSong', (songToAdd) => {
-        songAlreadyQueued(songToAdd).then((song) => {
+        let checkPipeline = [
+          songAlreadyQueued(songToAdd),
+          YoutubeBackend.addSongCheck(songToAdd)
+        ];
+        
+        Promise.all(checkPipeline).then((songToAdd) => {
+            console.log("REACHES THEN STATEMENT");
+            // add song.
             songs.push(songToAdd);
             conn.emit('song-added', { confirmed: "Song added!" });
             io.emit('queue-updated', songs);
         }).catch((err) => {
-            conn.emit('song-added', { err: "Song already in queue" });
+            let msg = err || "Pick another song."
+            conn.emit('song-added', { err: msg });
         });
+
+
+
+        // songs.push(songToAdd);
+        //     conn.emit('song-added', { confirmed: "Song added!" });
+        //     io.emit('queue-updated', songs);
     });
 
     conn.on('get-queue', () => {

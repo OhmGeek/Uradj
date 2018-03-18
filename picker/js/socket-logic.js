@@ -49,8 +49,9 @@ socket.on('song-added', (data) => {
             type: "success"
         });
     } else {
+        console.log(data);
         swal({
-            title: "An error occurred",
+            title: data.err,
             type: "error"
         });
     }
