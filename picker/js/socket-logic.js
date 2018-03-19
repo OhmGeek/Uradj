@@ -13,9 +13,9 @@ socket.on('search-result', (results) => {
 
 });
 
-window.addEventListener('load', function() {
+ons.ready(function() {
     socket.emit('get-queue');
-})
+});
 // Update Queue
 socket.on('queue-updated', (data) => {
         // First, update the UP NEXT LIST on home
