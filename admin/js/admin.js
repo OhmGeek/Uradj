@@ -12,7 +12,7 @@ $(function() {
         //     </li>
         let songObject = document.createElement('li');
         songObject.className = 'w3-display-container';
-        songObject.dataset.song = song;
+        songObject.dataset.song = JSON.stringify(song);
         let songText = document.createElement('span');
         songText.innerText = song.info.name;
         songObject.appendChild(songText);
@@ -22,8 +22,10 @@ $(function() {
         deleteButton.innerHTML = "&times;";
         songObject.appendChild(deleteButton);
         songObject.addEventListener('click', function() {
-            let song = this.dataset.song;
-            adminIO.emit('delete-song-from-queue', song);
+            let song = JSON.parse(this.dataset.song);
+            console.log("Delete");
+            console.log(song)
+            adminIO.emit('delete-song-from-queue', JSON.stringify(song));
         })
         return songObject;
     }

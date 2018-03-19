@@ -494,8 +494,6 @@ io.on('connection', function(conn) {
         ];
         
         Promise.all(checkPipeline).then((songToAdd) => {
-            console.log(songToAdd)
-            console.log("REACHES THEN STATEMENT");
             // add song.
             songs.push(songToAdd[0]);
             conn.emit('song-added', { confirmed: "Song added!" });
@@ -529,8 +527,22 @@ io.on('connection', function(conn) {
     });
 
     conn.on('delete-song-from-queue', (song) => {
-        let indexToDelete = songs.indexOf(song);
-        songs.splice(indexToDelete, 1);
+        console.log("Song to delete:");
+        console.log(song);
+        song = JSON.parse(song)
+        let indexToDelete = 0;
+        while(songs.length > 0 && songs[indexToDelete].info.id != song.info.id) {
+          indexToDelete += 1
+        }
+
+        if(songs[indexToDelete].info.id == song.info.id) {
+          songs.splice(indexToDelete, 1);
+          console.log("Deleted");
+        } else {
+          console.log("Couldn't delete")
+        }
+
+
         conn.emit('queue-updated', songs);
     });
 
