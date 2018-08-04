@@ -37,15 +37,10 @@ class App extends React.Component {
         this.socket.emit('get-next-song');
     }
     render() {
-        let playerOptions = {
-            enabled: true,
-            controls: ['play-large', 'volume', 'fullscreen']
-        }
-
         return (
             <div>
-                <Title text="UraDJ Jukebox Player" />
-                <VideoPlayer song={this.state.currentSong} options={playerOptions} nextSongHandler={this.nextSongHandler} />
+                <Title text={this.props.appName || "UraDJ Jukebox Player"} />
+                <VideoPlayer song={this.state.currentSong} nextSongHandler={this.nextSongHandler} />
                 <QueueList queue={this.state.nextSongs} />
             </div>
         )
