@@ -1,23 +1,50 @@
 import React from "react";
-
+import io from "socket.io-client";
 class QueueList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            queue: []
+        }
+    }
+    componentDidMount() {
+        let socket = io();
+
+        // Update queue handler
+        socket.on('queue-updated', (data) => {
+            this.setState({queue: data});
+        });
+
+        // Call the get queue thing.
+        socket.emit('get-queue');
+    }
+
     render() {
+        let shortQueue = this.state.queue;
+
+        if(this.props.maxItemsToDisplay && shortQueue.length > this.props.maxItemsToDisplay) {
+            shortQueue.slice(0, this.props.maxItemsToDisplay); // Only display the max number of items allowed.
+        }
+        const imgStyle = {
+            width: "85px"
+        }
+        console.log(shortQueue)
         return (
-            <div className="w3-container">
-                <h2>Up Next:</h2>
-                <ul className="w3-ul" id="up-next-list">
-                    {this.props.queue.map((song) => {
-                        return (<li>
-                            <img src={song.info.thumbnail_img} className="w3-bar-item w3-circle" />
+            <ul>
+                {shortQueue.map((elem) => {
+                    return (
+                        <li className="w3-bar">
+                            <img src={elem.info.thumbnail_img} className="w3-bar-item w3-circle" style={imgStyle} />
                             <div className="w3-bar-item">
-                                <span className="w3-large">{song.info.name}</span>
+                                <span className="w3-large">{elem.info.name}</span>
                             </div>
-                        </li>)
-                    })}
-                </ul>
-            </div>
+                        </li>
+                    )
+                })}                    
+            </ul>
         )
     }
+
 }
 
 export default QueueList;

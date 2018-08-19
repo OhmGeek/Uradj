@@ -479,10 +479,13 @@ function songAlreadyQueued(song) {
 io.on('connection', function(conn) {
     conn.on('search', (query) => {
         var q = query.q;
+        console.log("received query");
+        console.log(q)
         YoutubeBackend.searchSongs(q).then(function(data) {
                 conn.emit('search-result', data);
             })
             .catch((err) => {
+                console.log(err);
                 conn.emit('search-result', { err: err });
             });
     })
@@ -519,6 +522,7 @@ io.on('connection', function(conn) {
         let song = songs.shift();
         if (song) {
             io.emit('play-next-song', song);
+            conn.emit('queue-updated', songs); // Update the queue for everyone.
         } else {
             let backup = default_queue[currentIndex];
             io.emit('play-next-song', backup);
@@ -590,8 +594,8 @@ app.get('/api/getQueue', (req, res) => {
 
 
 // ----------- STATIC CONTENT --------------
-app.use(express.static(path.join(currentDirectory, "picker")));
-app.use('/jukeboxplayer', express.static(path.join(currentDirectory, 'playback')));
+app.use(express.static(path.join(currentDirectory, "picker/dist")));
+app.use('/jukeboxplayer', express.static(path.join(currentDirectory, 'playback/dist')));
 app.use('/jukeboxmanager', express.static(path.join(currentDirectory, 'admin')));
 app.get("*", function(req, res) {
     res.status(404).send("File not found");
