@@ -14,8 +14,8 @@ document.querySelector("body").appendChild(appContainer);
 ReactDOM.render((
   <ViewController>
       <HomePage title="Home Page" />
-      <QueuePage title="Queue" />
       <SearchPage title="Search" />
+      <QueuePage title="Queue" />
   </ViewController>  
 ), appContainer)
 

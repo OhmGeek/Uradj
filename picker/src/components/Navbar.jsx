@@ -6,9 +6,14 @@ class Navbar extends React.Component {
         return (
         <nav>
             {this.props.pages.map((child) => {
+                const isActive = this.props.activeView === child
+                let activeClass = "";
+                if(isActive) {
+                    activeClass = "active"
+                }
 
                 return (
-                    <a onClick={() => this.props.handleClick(child)} active={child.props.active}>
+                    <a onClick={() => this.props.handleClick(child)} className={activeClass}>
                         {child.props.title}
                     </a>
                 )
