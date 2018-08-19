@@ -15,7 +15,7 @@ class HomePage extends React.Component {
                 <div className="w3-card-4">
                     <header className="w3-container w3-light-grey"><h3 className="w3-center">Up Next</h3></header>
                     <article className="w3-container">
-                        <ShortQueue />
+                        <ShortQueue maxItemsToDisplay={5}/>
                     </article>
                 </div>
             </div>
