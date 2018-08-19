@@ -30,18 +30,21 @@ class QueueList extends React.Component {
         }
         console.log(shortQueue)
         return (
-            <ul>
-                {shortQueue.map((elem) => {
-                    return (
-                        <li className="w3-bar">
-                            <img src={elem.info.thumbnail_img} className="w3-bar-item w3-circle" style={imgStyle} />
-                            <div className="w3-bar-item">
-                                <span className="w3-large">{elem.info.name}</span>
-                            </div>
-                        </li>
-                    )
-                })}                    
-            </ul>
+            <div class="w3-container">
+                <h2>Up next:</h2>
+                <ul class="w3-ul w3-border">
+                    {shortQueue.map((elem) => {
+                        return (
+                            <li className="w3-bar">
+                                <img src={elem.info.thumbnail_img} className="w3-bar-item w3-circle" style={imgStyle} />
+                                <div className="w3-bar-item">
+                                    <span className="w3-large">{elem.info.name}</span>
+                                </div>
+                            </li>
+                        )
+                    })}                    
+                </ul>
+            </div>
         )
     }
 

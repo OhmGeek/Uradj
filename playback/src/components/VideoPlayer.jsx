@@ -21,13 +21,23 @@ let getVideoPlayer = (song, onEndOfSong) => {
 class VideoPlayer extends React.Component {
   
     render() {
-       
+        console.log(this.props.song);
+        let songName = "";
+        if(this.props.song && this.props.song.info && this.props.song.info.name) {
+            songName = this.props.song.info.name;
+        }
+
+
         console.log(this.props.song);
         return (
-            <div className="w3-container w3-black w3-center video-player">
-                {getVideoPlayer(this.props.song, this.props.nextSongHandler)}
+            <div>
+                <div className="w3-container w3-black w3-center video-player">
+                    {getVideoPlayer(this.props.song, this.props.nextSongHandler)}
+                </div>
+                <div className="w3-container">
+                    <h2>Currently playing: {songName}</h2>
+                </div>
             </div>
-
         )
     }
 }

@@ -522,7 +522,7 @@ io.on('connection', function(conn) {
         let song = songs.shift();
         if (song) {
             io.emit('play-next-song', song);
-            conn.emit('queue-updated', songs); // Update the queue for everyone.
+            io.emit('queue-updated', songs); // Update the queue for everyone.
         } else {
             let backup = default_queue[currentIndex];
             io.emit('play-next-song', backup);
