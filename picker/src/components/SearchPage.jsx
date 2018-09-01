@@ -24,6 +24,8 @@ class SearchPage extends React.Component {
 
     }
     handleTextEntry(event) {
+        event.preventDefault();
+
         let query = event.target.value;
 
         this.setState({query: event.target.value});
@@ -37,7 +39,7 @@ class SearchPage extends React.Component {
     render() {
         return (
             <div>
-                <form className="w3-padding-16 w3-container w3-grey"  >
+                <form action="none" className="w3-padding-16 w3-container w3-grey" onSubmit={(e) => e.preventDefault()} >
                     <input className="w3-input w3-border w3-round" type="text" placeholder="Search for a song..." onChange={this.handleTextEntry}></input>
                 </form>
                 <div className="w3-container">
