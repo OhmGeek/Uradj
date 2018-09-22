@@ -24,7 +24,7 @@ export default class App extends React.Component {
             };
         } else if (s && s.confirmed) {
             alertObject = {
-                type: "Info",
+                type: "success",
                 title: "Song Added",
                 text: "Song added successfully."
             }
