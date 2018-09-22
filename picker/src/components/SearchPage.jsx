@@ -17,11 +17,11 @@ class SearchPage extends React.Component {
         this.socket = io();
 
         this.socket.on('search-result', (searchResults) => {
-            console.log("SEARCH RESULTS RETURNED");
             console.log(searchResults);
             this.setState({results: searchResults});
         });
 
+        this.socket.on('song-added', (result) => {this.props.triggerAlert(result)})
     }
     handleTextEntry(event) {
         event.preventDefault();
