@@ -16,7 +16,7 @@ class ViewController extends React.Component {
         return (
             <div>
                 <div className="w3-container w3-center w3-red">
-                    <h1>{this.state.currentView.props.title}</h1>
+                    <h2>{this.state.currentView.props.title}</h2>
                 </div>
                 {this.state.currentView}
                 <Navbar pages={this.props.children} activeView={this.state.currentView} handleClick={this.setActiveView}/>

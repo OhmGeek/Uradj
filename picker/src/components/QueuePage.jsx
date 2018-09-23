@@ -4,7 +4,7 @@ import ShortQueue from "./ShortQueue.jsx";
 class QueuePage extends React.Component {
     render() {
         return (
-            <div>
+            <div className="w3-container">
                 <ShortQueue />
             </div>
         )
