@@ -479,6 +479,7 @@ function songAlreadyQueued(song) {
 io.on('connection', function(conn) {
     conn.on('search', (query) => {
         var q = query.q;
+        q = q + " karaoke"
         console.log("received query");
         console.log(q)
         YoutubeBackend.searchSongs(q).then(function(data) {
